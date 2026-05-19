@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldIdentity — National Identity Explorer</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+    WORLDIDENTITY — PREMIUM GRADIENT DESIGN SYSTEM
+    Deep dark base + vivid multi-stop linear gradients
+    Glass morphism UI elements + neon accent highlights
+═══════════════════════════════════════════════════════════ */
+        :root {
+            /* Core Gradients */
+            --grad-brand: linear-gradient(135deg, #6366f1 0%, #8b5cf6 40%, #ec4899 100%);
+            --grad-brand-r: linear-gradient(135deg, #ec4899 0%, #8b5cf6 60%, #6366f1 100%);
+            --grad-teal: linear-gradient(135deg, #06b6d4 0%, #3b82f6 60%, #6366f1 100%);
+            --grad-warm: linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #ec4899 100%);
+            --grad-green: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            --grad-hero: linear-gradient(135deg, #0f0c29 0%, #1a1040 35%, #24243e 70%, #0d1117 100%);
+            --grad-card: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+            --grad-card-hov: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
+            --grad-navy: linear-gradient(180deg, #0d0d1a 0%, #111128 100%);
+            --grad-surface: linear-gradient(145deg, #16162a 0%, #1a1a2e 100%);
+            --grad-modal: linear-gradient(180deg, #0e0e1f 0%, #131328 100%);
+            --grad-footer: linear-gradient(180deg, #0a0a18 0%, #0d0d20 100%);
+
+            /* Accent Colors */
+            --violet: #8b5cf6;
+            --indigo: #6366f1;
+            --pink: #ec4899;
+            --cyan: #06b6d4;
+            --blue: #3b82f6;
+            --emerald: #10b981;
+            --amber: #f59e0b;
+            --rose: #f43f5e;
+
+            /* Glows */
+            --glow-v: rgba(139, 92, 246, 0.35);
+            --glow-p: rgba(236, 72, 153, 0.3);
+            --glow-c: rgba(6, 182, 212, 0.3);
+            --glow-b: rgba(59, 130, 246, 0.35);
+
+            /* Surface */
+            --bg: #080818;
+            --s1: rgba(255, 255, 255, 0.055);
+            --s2: rgba(255, 255, 255, 0.08);
+            --s3: rgba(255, 255, 255, 0.12);
+            --s4: rgba(255, 255, 255, 0.18);
+
+            /* Text */
+            --tx: #f0f0ff;
+            --tx2: #9090b8;
+            --tx3: #5050708;
+            --tx-dim: #55557a;
+
+            /* Borders */
+            --b1: rgba(255, 255, 255, 0.07);
+            --b2: rgba(255, 255, 255, 0.12);
+            --b3: rgba(255, 255, 255, 0.2);
+            --bg: rgba(139, 92, 246, 0.25);
+
+            /* Radius */
+            --r-sm: 8px;
+            --r: 12px;
+            --r-lg: 18px;
+            --r-xl: 24px;
+            --r-pill: 9999px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080818;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 110%, rgba(236, 72, 153, 0.09) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 30% at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+            color: var(--tx);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.4);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.65);
+        }
+
+        /* ── NOISE GRAIN overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+            opacity: .5;
+        }
+
+        /* All real content above grain */
+        body>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ══════════════════════════════════════
+    NAVBAR
+══════════════════════════════════════ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            padding: 0 clamp(16px, 4vw, 56px);
+            gap: 16px;
+            background: rgba(8, 8, 24, 0.72);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.18);
+        }
+
+        /* subtle top gradient line on nav */
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.6) 30%, rgba(236, 72, 153, 0.5) 70%, transparent 100%);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-brand-ico {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: var(--grad-brand);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 16px rgba(139, 92, 246, 0.45);
+        }
+
+        .nav-brand-ico svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .nav-brand-txt {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #e0e0ff 0%, #c4b5fd 50%, #f9a8d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-brand-txt em {
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: normal;
+        }
+
+        .nav-links {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--tx2);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            padding: 6px 14px;
+            border-radius: var(--r-pill);
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--tx);
+            background: var(--s1);
+        }
+
+        .nav-link.active {
+            color: #c4b5fd;
+            background: rgba(139, 92, 246, 0.12);
+        }
+
+        .nav-stats {
+            display: flex;
+            gap: 8px;
+            margin-left: 16px;
+        }
+
+        .nav-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--tx2);
+            background: var(--s1);
+            border: 1px solid var(--b1);
+            padding: 5px 12px;
+            border-radius: var(--r-pill);
+            transition: all 0.2s;
+        }
+
+        .nav-stat span {
+            font-weight: 700;
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ══════════════════════════════════════
+        HERO SECTION
+        ══════════════════════════════════════ */
+        #hero {
+            min-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px clamp(16px, 4vw, 56px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1040 35%, #24243e 70%, #0d1117 100%);
+        }
+
+        /* animated gradient orbs */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -15%;
+            width: 65vw;
+            height: 65vw;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(99, 102, 241, 0.18) 0%, transparent 65%);
+            animation: orbA 18s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: -15%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(236, 72, 153, 0.14) 0%, transparent 65%);
+            animation: orbB 22s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes orbA {
+            to {
+                transform: translate(8vw, 6vh) scale(1.12);
+            }
+        }
+
+        @keyframes orbB {
+            to {
+                transform: translate(-6vw, -5vh) scale(1.18);
+            }
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #c4b5fd;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 7px 18px;
+            border-radius: var(--r-pill);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--violet);
+            box-shadow: 0 0 8px var(--glow-v);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 4px var(--glow-v);
+            }
+
+            50% {
+                box-shadow: 0 0 14px var(--glow-v);
+            }
+        }
+
+        #hero h1 {
+            font-family: 'Lora', serif;
+            font-size: clamp(44px, 8vw, 90px);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -2.5px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero h1 .line1 {
+            color: var(--tx);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        #hero h1 em {
+            font-style: normal;
+            display: block;
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 40%, #f472b6 80%, #fb923c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #hero p {
+            font-size: clamp(15px, 1.8vw, 18px);
+            font-weight: 400;
+            color: var(--tx2);
+            max-width: 580px;
+            margin: 0 auto 40px;
+            line-height: 1.75;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero CTAs */
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--grad-brand);
+            color: #fff;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 13px 28px;
+            border-radius: var(--r-pill);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(139, 92, 246, 0.45);
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.6);
+            filter: brightness(1.08);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+        .btn-blue {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--s1);
+            color: #c4b5fd;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 13px 28px;
+            border-radius: var(--r-pill);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--s1);
+            color: #c4b5fd;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 13px 28px;
+            border-radius: var(--r-pill);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost:active {
+            transform: scale(0.97);
+        }
+
+        /* Hero KPI bar */
+        .hero-kpi {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 0;
+            margin-top: 64px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--b1);
+            border-radius: var(--r-xl);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .kpi-item {
+            flex: 1;
+            padding: 20px 16px;
+            text-align: center;
+            position: relative;
+        }
+
+        .kpi-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 0;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .kpi-n {
+            font-family: 'Lora', serif;
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .kpi-n em {
+            font-style: normal;
+        }
+
+        .kpi-l {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--tx-dim);
+            letter-spacing: 0.3px;
+        }
+
+        /* ══════════════════════════════════════
+        CONTROLS SECTION
+        ══════════════════════════════════════ */
+        #ctrl-section {
+            padding: 28px clamp(16px, 4vw, 56px) 16px;
+            background: linear-gradient(180deg, rgba(15, 12, 41, 0.95) 0%, rgba(13, 13, 32, 0.98) 100%);
+            border-bottom: 1px solid var(--b1);
+            position: sticky;
+            top: 62px;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+        }
+
+        .ctrl-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Search */
+        .srch-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .srch-wrap svg {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            color: var(--tx-dim);
+            pointer-events: none;
+        }
+
+        #si {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--b2);
+            border-radius: var(--r-pill);
+            padding: 10px 16px 10px 38px;
+            color: var(--tx);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            height: 42px;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        #si::placeholder {
+            color: var(--tx-dim);
+        }
+
+        #si:focus {
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(139, 92, 246, 0.08);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+        }
+
+        /* Filter pills */
+        .fps {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .fp {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--b1);
+            border-radius: var(--r-pill);
+            padding: 6px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--tx2);
+            cursor: pointer;
+            transition: all 0.18s;
+            white-space: nowrap;
+        }
+
+        .fp:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            color: #c4b5fd;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .fp.on {
+            background: var(--grad-brand);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        .sort-s {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--b2);
+            border-radius: var(--r);
+            padding: 8px 12px;
+            color: var(--tx);
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+            margin-left: auto;
+            height: 42px;
+        }
+
+        .sort-s option {
+            background: #16162a;
+        }
+
+        /* Result bar */
+        #rbar {
+            padding: 10px clamp(16px, 4vw, 56px);
+            background: linear-gradient(180deg, rgba(13, 13, 32, 0.98) 0%, rgba(8, 8, 24, 1) 100%);
+            border-bottom: 1px solid var(--b1);
+        }
+
+        .rbar-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #rct {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--tx-dim);
+        }
+
+        #rct span {
+            font-weight: 700;
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vtg {
+            margin-left: auto;
+            display: flex;
+            gap: 4px;
+        }
+
+        .vb {
+            width: 30px;
+            height: 30px;
+            border-radius: var(--r-sm);
+            border: 1px solid var(--b1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--tx2);
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: all 0.18s;
+        }
+
+        .vb svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .vb:hover {
+            border-color: var(--b2);
+            color: var(--tx);
+        }
+
+        .vb.on {
+            background: var(--grad-brand);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        /* ══════════════════════════════════════
+        COUNTRY GRID
+        ══════════════════════════════════════ */
+        #grid-section {
+            background: linear-gradient(180deg, #080818 0%, #0a0a1e 100%);
+            min-height: 400px;
+        }
+
+        #cgrid {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 24px clamp(16px, 4vw, 56px) 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 14px;
+        }
+
+        #cgrid.lv {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        /* Country card */
+        .cc {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.065) 0%, rgba(255, 255, 255, 0.025) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: var(--r-xl);
+            padding: 22px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.26s cubic-bezier(0.34, 1.5, 0.64, 1), border-color 0.2s, box-shadow 0.2s;
+            animation: cardIn 0.38s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+            backdrop-filter: blur(4px);
+        }
+
+        /* gradient shimmer on hover */
+        .cc::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.05) 50%, rgba(6, 182, 212, 0.06) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: inherit;
+        }
+
+        .cc:hover {
+            transform: translateY(-5px) scale(1.01);
+            border-color: rgba(139, 92, 246, 0.35);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.22), 0 0 0 1px rgba(139, 92, 246, 0.12);
+        }
+
+        .cc:hover::before {
+            opacity: 1;
+        }
+
+        /* visited indicator */
+        .cc.vis {
+            border-color: rgba(16, 185, 129, 0.3);
+            background: linear-gradient(145deg, rgba(16, 185, 129, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+        }
+
+        .cc.vis::after {
+            content: '✓';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .cc-flag {
+            font-size: 36px;
+            line-height: 1;
+            margin-bottom: 12px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        .cc-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tx);
+            margin-bottom: 3px;
+            letter-spacing: -0.3px;
+        }
+
+        .cc-sub {
+            font-size: 12px;
+            color: var(--tx-dim);
+            margin-bottom: 12px;
+        }
+
+        .cc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            font-weight: 600;
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cc-link svg {
+            width: 12px;
+            height: 12px;
+            color: var(--violet);
+            flex-shrink: 0;
+        }
+
+        /* List view */
+        #cgrid.lv .cc {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border-radius: var(--r-lg);
+        }
+
+        #cgrid.lv .cc-flag {
+            font-size: 28px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        #cgrid.lv .cc-info {
+            flex: 1;
+        }
+
+        #cgrid.lv .cc-name {
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        #cgrid.lv .cc-sub {
+            margin-bottom: 0;
+        }
+
+        #cgrid.lv .cc-link {
+            margin-left: auto;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px) scale(0.94);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* empty state */
+        .empty {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 64px 20px;
+            color: var(--tx-dim);
+        }
+
+        /* ══════════════════════════════════════
+        FOOTER
+        ══════════════════════════════════════ */
+        footer {
+            background: linear-gradient(180deg, #0a0a18 0%, #0d0d20 100%);
+            border-top: 1px solid var(--b1);
+            padding: 40px clamp(16px, 4vw, 56px);
+            text-align: center;
+        }
+
+        .ft-brand {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c4b5fd 0%, #f9a8d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .ft-brand em {
+            font-style: normal;
+        }
+
+        .ft-note {
+            font-size: 12px;
+            color: var(--tx-dim);
+        }
+
+        /* ══════════════════════════════════════
+        MODAL OVERLAY
+        ══════════════════════════════════════ */
+        #ov-bg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(4, 4, 14, 0.82);
+            backdrop-filter: blur(12px) saturate(140%);
+            -webkit-backdrop-filter: blur(12px) saturate(140%);
+        }
+
+        #ov-bg.open {
+            display: block;
+            animation: fadeIn 0.22s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #ov {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 801;
+            overflow-y: auto;
+            padding: 32px 16px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        #ov.open {
+            display: flex;
+        }
+
+        /* ══════════════════════════════════════
+        MODAL
+        ══════════════════════════════════════ */
+        #mod {
+            background: linear-gradient(180deg, #0e0e1f 0%, #131328 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 880px;
+            margin: auto;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(139, 92, 246, 0.1), 0 0 60px rgba(139, 92, 246, 0.08);
+            animation: modalIn 0.34s cubic-bezier(0.34, 1.3, 0.64, 1);
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(28px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Modal hero with bg image */
+        .mhero {
+            position: relative;
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px 32px 26px;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .mhero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(5, 5, 20, 0.25) 0%, rgba(5, 5, 20, 0.72) 55%, rgba(8, 8, 28, 0.97) 100%);
+        }
+
+        /* gradient accent bar at top of modal hero */
+        .mhero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--grad-brand);
+            z-index: 2;
+        }
+
+        .mhero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mcl {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 3;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            backdrop-filter: blur(8px);
+            transition: all 0.18s;
+        }
+
+        .mcl:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .mflag {
+            font-size: 52px;
+            margin-bottom: 12px;
+            display: block;
+            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+        }
+
+        .mname {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0d7ff 60%, #f9a8d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .mmeta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .mchip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(200, 190, 255, 0.8);
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            padding: 4px 12px;
+            border-radius: var(--r-pill);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Modal sub-nav */
+        .mtabs {
+            display: flex;
+            background: rgba(10, 10, 26, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--b1);
+            padding: 0 28px;
+            gap: 0;
+        }
+
+        .mtab {
+            padding: 14px 22px 13px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--tx2);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all 0.18s;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .mtab:hover {
+            color: var(--tx);
+        }
+
+        .mtab.on {
+            color: #c4b5fd;
+            border-bottom-color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        /* Modal panels */
+        .mpanel {
+            display: none;
+            padding: 28px 32px;
+        }
+
+        .mpanel.on {
+            display: block;
+        }
+
+        /* ══════════════════════════════════════
+        IDENTITY CARDS
+        ══════════════════════════════════════ */
+        .id-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .idc {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid var(--b1);
+            border-radius: var(--r-lg);
+            padding: 18px;
+            transition: border-color 0.18s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .idc::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--grad-brand);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .idc:hover {
+            border-color: rgba(139, 92, 246, 0.28);
+            transform: translateY(-2px);
+        }
+
+        .idc:hover::before {
+            opacity: 1;
+        }
+
+        .idc-icon {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .idc-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--tx-dim);
+            margin-bottom: 5px;
+        }
+
+        .idc-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -0.2px;
+        }
+
+        .idc-desc {
+            font-size: 12px;
+            color: var(--tx2);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .idc-origin {
+            padding: 10px 12px;
+            background: rgba(99, 102, 241, 0.07);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-left: 3px solid;
+            border-image: linear-gradient(180deg, #6366f1, #ec4899) 1;
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            font-size: 12px;
+            color: var(--tx2);
+            line-height: 1.65;
+        }
+
+        .idc-origin strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #818cf8;
+        }
+
+        /* ══════════════════════════════════════
+        QUIZ — TOEIC Style
+        ══════════════════════════════════════ */
+        /* Quiz start */
+        .qstart {
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .qstart h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #e0e0ff 0%, #c4b5fd 50%, #f9a8d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .qstart>p {
+            font-size: 14px;
+            color: var(--tx2);
+            line-height: 1.7;
+            max-width: 500px;
+            margin: 0 auto 24px;
+        }
+
+        .qinfo-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .qibox {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+            border: 1px solid var(--b2);
+            border-radius: var(--r-lg);
+            padding: 16px 24px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .qibox .n {
+            font-family: 'Syne', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .qibox .l {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--tx-dim);
+            margin-top: 3px;
+        }
+
+        .btn-start {
+            background: var(--grad-brand);
+            color: #fff;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: var(--r-pill);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(139, 92, 246, 0.45);
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.6);
+            filter: brightness(1.08);
+        }
+
+        .btn-start:active {
+            transform: scale(0.97);
+        }
+
+        /* Quiz question */
+        .qhd {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .qbadge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            padding: 5px 13px;
+            border-radius: var(--r-pill);
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            color: #818cf8;
+        }
+
+        .qmeta {
+            font-size: 13px;
+            color: var(--tx-dim);
+        }
+
+        .qmeta b {
+            color: #c4b5fd;
+            font-weight: 700;
+        }
+
+        .qpbar {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .qpfill {
+            height: 100%;
+            background: var(--grad-brand);
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+        }
+
+        .qrule {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--tx-dim);
+            margin-bottom: 10px;
+        }
+
+        .qq {
+            font-size: 16px;
+            color: var(--tx);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            background: rgba(99, 102, 241, 0.07);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-left: 3px solid;
+            border-image: linear-gradient(180deg, #6366f1, #ec4899) 1;
+            padding: 14px 16px;
+            border-radius: 0 var(--r) var(--r) 0;
+        }
+
+        /* ── QUIZ OPTIONS — THE CRITICAL FIX ── */
+        .qopts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .qopt {
+            /* Reset */
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            /* Layout */
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            /* Visual */
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--r-lg);
+            padding: 13px 15px;
+            /* Text */
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--tx2);
+            text-align: left;
+            line-height: 1.5;
+            /* Interaction */
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: border-color 0.15s, background 0.15s, transform 0.12s, box-shadow 0.15s;
+            width: 100%;
+        }
+
+        .qopt:hover:not([disabled]) {
+            border-color: rgba(139, 92, 246, 0.45);
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+            color: var(--tx);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.15);
+        }
+
+        .qopt:active:not([disabled]) {
+            transform: scale(0.98);
+        }
+
+        .qopt[disabled] {
+            cursor: default;
+        }
+
+        /* correct */
+        .qopt.ok {
+            border-color: #10b981 !important;
+            background: linear-gradient(145deg, rgba(16, 185, 129, 0.14) 0%, rgba(6, 182, 212, 0.07) 100%) !important;
+            color: #6ee7b7 !important;
+            box-shadow: 0 0 14px rgba(16, 185, 129, 0.2) !important;
+        }
+
+        /* wrong */
+        .qopt.no {
+            border-color: #f43f5e !important;
+            background: linear-gradient(145deg, rgba(244, 63, 94, 0.1) 0%, rgba(244, 63, 94, 0.05) 100%) !important;
+            color: #fda4af !important;
+        }
+
+        /* Option label circle */
+        .opt-lbl {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--tx-dim);
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.15s;
+            margin-top: 0;
+        }
+
+        .qopt:hover .opt-lbl {
+            border-color: rgba(139, 92, 246, 0.5);
+            color: #c4b5fd;
+        }
+
+        .qopt.ok .opt-lbl {
+            border-color: #10b981;
+            background: #10b981;
+            color: #fff;
+        }
+
+        .qopt.no .opt-lbl {
+            border-color: #f43f5e;
+            background: #f43f5e;
+            color: #fff;
+        }
+
+        .qfb {
+            min-height: 22px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 14px;
+            padding: 0 2px;
+        }
+
+        .qfb.ok {
+            color: #6ee7b7;
+        }
+
+        .qfb.no {
+            color: #fda4af;
+        }
+
+        .qfooter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qstreak {
+            font-size: 13px;
+            color: var(--tx-dim);
+        }
+
+        .qstreak b {
+            color: #c4b5fd;
+            font-weight: 700;
+        }
+
+        .btn-nxt {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            background: var(--grad-brand);
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: var(--r-pill);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+            transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+        }
+
+        .btn-nxt.show {
+            display: inline-flex;
+        }
+
+        .btn-nxt:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+            box-shadow: 0 6px 24px rgba(139, 92, 246, 0.55);
+        }
+
+        .btn-nxt:active {
+            transform: scale(0.97);
+        }
+
+        /* ── QUIZ RESULT ── */
+        .qres-hero {
+            text-align: center;
+            padding: 24px 0 22px;
+            border-bottom: 1px solid var(--b1);
+            margin-bottom: 22px;
+        }
+
+        .qres-pct {
+            font-family: 'Syne', sans-serif;
+            font-size: 68px;
+            font-weight: 800;
+            letter-spacing: -3px;
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4));
+        }
+
+        .qres-label {
+            font-size: 15px;
+            color: var(--tx2);
+        }
+
+        .qres-grade {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 20px;
+            border-radius: var(--r-pill);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .gS {
+            background: linear-gradient(135deg, rgba(16, 185, 129, .2), rgba(6, 182, 212, .15));
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, .35);
+        }
+
+        .gA {
+            background: linear-gradient(135deg, rgba(99, 102, 241, .18), rgba(139, 92, 246, .15));
+            color: #c4b5fd;
+            border: 1px solid rgba(99, 102, 241, .3);
+        }
+
+        .gB {
+            background: linear-gradient(135deg, rgba(245, 158, 11, .16), rgba(251, 146, 60, .12));
+            color: #fcd34d;
+            border: 1px solid rgba(245, 158, 11, .28);
+        }
+
+        .gC {
+            background: linear-gradient(135deg, rgba(244, 63, 94, .15), rgba(236, 72, 153, .1));
+            color: #fda4af;
+            border: 1px solid rgba(244, 63, 94, .25);
+        }
+
+        .qres-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .rsc {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid var(--b1);
+            border-radius: var(--r-lg);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .rsc .sn {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .rsc .sl {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--tx-dim);
+            margin-top: 4px;
+        }
+
+        .rsc.g .sn {
+            background: var(--grad-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rsc.r .sn {
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rsc.y .sn {
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sec-h {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #e0e0ff 0%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 14px;
+        }
+
+        /* Topic breakdown bars */
+        .topic-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 9px;
+        }
+
+        .topic-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--tx2);
+            width: 170px;
+            flex-shrink: 0;
+        }
+
+        .topic-bar-wrap {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .topic-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.7s 0.1s;
+        }
+
+        .topic-score {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tx-dim);
+            width: 36px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        /* Review items */
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ri {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid var(--b1);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+        }
+
+        .ri-head {
+            padding: 14px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .ri-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .ri-num.ok {
+            background: rgba(16, 185, 129, .18);
+            color: #6ee7b7;
+        }
+
+        .ri-num.no {
+            background: rgba(244, 63, 94, .15);
+            color: #fda4af;
+        }
+
+        .ri-q {
+            font-size: 14px;
+            color: var(--tx);
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .ri-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: var(--r-pill);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .ri-tag.ok {
+            background: rgba(16, 185, 129, .15);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, .25);
+        }
+
+        .ri-tag.no {
+            background: rgba(244, 63, 94, .12);
+            color: #fda4af;
+            border: 1px solid rgba(244, 63, 94, .22);
+        }
+
+        .ri-body {
+            padding: 0 16px 16px 50px;
+            border-top: 1px solid var(--b1);
+        }
+
+        .ri-your {
+            font-size: 13px;
+            margin: 10px 0 4px;
+        }
+
+        .ri-your.ok {
+            color: #6ee7b7;
+        }
+
+        .ri-your.no {
+            color: #fda4af;
+        }
+
+        .ri-ans {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6ee7b7;
+            margin-bottom: 10px;
+        }
+
+        .ri-exp {
+            background: rgba(99, 102, 241, 0.07);
+            border: 1px solid rgba(99, 102, 241, 0.18);
+            border-left: 3px solid;
+            border-image: linear-gradient(180deg, #6366f1, #ec4899) 1;
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 12px 14px;
+        }
+
+        .ri-exp strong {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #818cf8;
+            margin-bottom: 7px;
+        }
+
+        .ri-exp p {
+            font-size: 13px;
+            color: var(--tx2);
+            line-height: 1.7;
+        }
+
+        /* Retry buttons */
+        .btn-retry {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--b2);
+            border-radius: var(--r-pill);
+            color: var(--tx);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 22px;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+
+        .btn-retry:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--b3);
+            transform: translateY(-1px);
+        }
+
+        .btn-retry.blue {
+            background: var(--grad-brand);
+            border-color: transparent;
+            color: #f3edf5;
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-retry.blue:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        /* ── TOAST ── */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(60px);
+            background: linear-gradient(135deg, rgba(14, 14, 30, 0.95) 0%, rgba(22, 22, 44, 0.95) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--tx);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 12px 24px;
+            border-radius: var(--r-pill);
+            z-index: 1000;
+            opacity: 0;
+            white-space: nowrap;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 92, 246, 0.15);
+            backdrop-filter: blur(12px);
+            transition: transform 0.35s cubic-bezier(0.34, 1.5, 0.64, 1), opacity 0.3s;
+        }
+
+        #toast.sh {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 833px) {
+            .nav-links {
+                display: none;
+            }
+
+            #hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-kpi {
+                max-width: 100%;
+                border-radius: var(--r-lg);
+            }
+
+            .kpi-item {
+                padding: 16px 10px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #hero h1 {
+                font-size: 28px;
+                letter-spacing: -1px;
+            }
+
+            .mhero {
+                min-height: 200px;
+                padding: 18px 20px;
+            }
+
+            .mname {
+                font-size: 28px;
+            }
+
+            .mpanel {
+                padding: 20px 16px;
+            }
+
+            .mtabs {
+                padding: 0 16px;
+            }
+
+            .qopts {
+                grid-template-columns: 1fr;
+            }
+
+            .qres-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ri-body {
+                padding-left: 16px;
+            }
+
+            .topic-label {
+                width: 120px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GLOBAL NAV -->
+    <nav>
+        <div>
+            <span class="nav-brand-txt">EinVerse</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-link active" onclick="scrollTo(0,0)">Explore</button>
+            <button class="nav-link"
+                onclick="document.getElementById('ctrl-section').scrollIntoView({behavior:'smooth'})">Countries</button>
+        </div>
+        <div class="nav-stats">
+            <div class="nav-stat">Visited <span id="nv">0</span></div>
+            <div class="nav-stat">Score <span id="ns">0</span></div>
+        </div>
+    </nav>
+
+    <!-- HERO — Dark tile -->
+    <section id="hero">
+        <div class="hero-eyebrow">National Identity Explorer</div>
+        <h1>From Language <br><em>to Global Perspective</em></h1>
+        <p>Explore the ideology, flag, language, symbols, mottos, anthems, and cultures of 50 nations — then test your
+            English with TOEIC-style grammar questions.</p>
+        <div class="hero-ctas">
+            <button class="btn-blue"
+                onclick="document.getElementById('ctrl-section').scrollIntoView({behavior:'smooth'})">
+                Start Exploring
+            </button>
+        </div>
+    </section>
+
+    <!-- CONTROLS — Parchment tile -->
+    <div id="ctrl-section">
+        <div class="ctrl-inner">
+            <div class="srch-wrap">
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="5.5" cy="5.5" r="4.5" />
+                    <line x1="9" y1="9" x2="13" y2="13" />
+                </svg>
+                <input type="text" id="si" placeholder="Search countries…" oninput="renderGrid()" autocomplete="off">
+            </div>
+            <div class="fps">
+                <button class="fp on" onclick="setRegion('All',this)">All</button>
+                <button class="fp" onclick="setRegion('Asia',this)">Asia</button>
+                <button class="fp" onclick="setRegion('Europe',this)">Europe</button>
+                <button class="fp" onclick="setRegion('Americas',this)">Americas</button>
+                <button class="fp" onclick="setRegion('Africa',this)">Africa</button>
+                <button class="fp" onclick="setRegion('Oceania',this)">Oceania</button>
+            </div>
+            <select class="sort-s" onchange="renderGrid()">
+                <option value="def">Default</option>
+                <option value="az">A → Z</option>
+                <option value="za">Z → A</option>
+                <option value="vis">Visited First</option>
+            </select>
+        </div>
+    </div>
+    <div id="rbar">
+        <div class="rbar-inner">
+            <div id="rct">Showing <span id="rn">0</span> countries</div>
+            <div class="vtg">
+                <button class="vb on" id="vbg" onclick="setView('g')" title="Grid">
+                    <svg viewBox="0 0 12 12" fill="currentColor">
+                        <rect x="0" y="0" width="5" height="5" rx="1" />
+                        <rect x="7" y="0" width="5" height="5" rx="1" />
+                        <rect x="0" y="7" width="5" height="5" rx="1" />
+                        <rect x="7" y="7" width="5" height="5" rx="1" />
+                    </svg>
+                </button>
+                <button class="vb" id="vbl" onclick="setView('l')" title="List">
+                    <svg viewBox="0 0 12 12" fill="currentColor">
+                        <rect x="0" y="1" width="12" height="2.5" rx="1" />
+                        <rect x="0" y="5" width="12" height="2.5" rx="1" />
+                        <rect x="0" y="9" width="12" height="2.5" rx="1" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRID — Light tile -->
+    <div id="grid-section">
+        <div id="cgrid"></div>
+    </div>
+
+    <footer>
+        <div class="ft-brand">World<em>Identity</em></div>
+        <div class="ft-note">English Project · Politeknik Negeri Medan</div>
+    </footer>
+
+    <!-- MODAL BACKDROP -->
+    <div id="ov-bg" onclick="closeMod()"></div>
+
+    <!-- MODAL -->
+    <div id="ov">
+        <div id="mod">
+            <div class="mhero" id="mhero">
+                <div class="mhero-overlay"></div>
+                <button class="mcl" onclick="closeMod()">✕</button>
+                <div class="mhero-content">
+                    <span class="mflag" id="mflag"></span>
+                    <div class="mname" id="mname"></div>
+                    <div class="mmeta" id="mmeta"></div>
+                </div>
+            </div>
+            <div class="mtabs">
+                <button class="mtab on" data-tab="id" onclick="switchTab('id',this)">National Identity</button>
+                <button class="mtab" data-tab="quiz" onclick="switchTab('quiz',this)">Grammar Quiz</button>
+            </div>
+            <div class="mpanel on" id="tab-id"></div>
+            <div class="mpanel" id="tab-quiz"></div>
+        </div>
+    </div>
+
+    <div id="toast"></div>
+
+
+    <script>
+        // ═══════════════════════════════════════
+        //  COUNTRY DATA (inline)
+        // ═══════════════════════════════════════
+        var C = {
+            Indonesia: { flag: "🇮🇩", region: "Asia", capital: "Jakarta", pop: "277M", bg: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Pancasila", desc: "Five principles: belief in one God, humanitarianism, Indonesian unity, democracy, and social justice.", origin: "Pancasila was formulated by Sukarno on June 1, 1945. The word comes from Sanskrit 'panca' (five) and 'sila' (principles), designed to unite 300+ ethnic groups under one inclusive philosophy." }, { icon: "🚩", label: "Flag", value: "Sang Saka Merah Putih", desc: "Red and white bicolor — red symbolizes courage and the human body; white symbolizes purity and the spirit.", origin: "The red-white combination traces back to the Majapahit Empire (13th–16th century). First raised on August 17, 1945, upon independence declaration." }, { icon: "🗣️", label: "National Language", value: "Bahasa Indonesia", desc: "A standardized form of Malay chosen as a unifying language among 700+ regional languages.", origin: "Declared the national language in the Youth Pledge (Sumpah Pemuda) on October 28, 1928. A deliberate political choice — no dominant ethnic group's language was selected." }, { icon: "🦅", label: "State Emblem", value: "Garuda Pancasila", desc: "A golden mythical eagle (Garuda) holding a shield divided into 5 sections representing Pancasila principles.", origin: "Adopted February 11, 1950. The Garuda is a divine bird from Hindu-Buddhist mythology. The shield bears symbols for all five Pancasila principles." }, { icon: "✨", label: "National Motto", value: "Bhinneka Tunggal Ika", desc: "'Unity in Diversity' — acknowledging differences while maintaining national unity.", origin: "From the Old Javanese poem 'Kakawin Sutasoma' by Mpu Tantular (14th century). Adopted as the national motto in 1945 to reflect Indonesia's multicultural identity." }, { icon: "🎵", label: "National Anthem", value: "Indonesia Raya", desc: "'Great Indonesia' — calls citizens to rise in spirit and defend the motherland.", origin: "Written and composed by Wage Rudolf Supratman in 1928, first played at the Youth Congress on October 28, 1928. Banned by the Dutch colonial government." }, { icon: "🏛️", label: "Form of State", value: "Unitary Presidential Republic", desc: "A republic with a directly elected president as both head of state and head of government.", origin: "Established by the 1945 Constitution. Indonesia chose a republic over monarchy to signal a complete break from colonial rule." }, { icon: "🎭", label: "Regional Culture", value: "Diverse Nusantara Traditions", desc: "From Batik textile art (UNESCO) to Wayang puppet theater, gamelan music, Kecak dance, and hundreds of regional ceremonies.", origin: "Indonesian cultural diversity stems from thousands of years of trade contact with India, China, Arabia, and Europe across 34 provinces." }] },
+            USA: { flag: "🇺🇸", region: "Americas", capital: "Washington D.C.", pop: "331M", bg: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Liberal Democracy & Capitalism", desc: "Constitutional democracy based on individual rights, free markets, separation of powers, and federalism.", origin: "Rooted in Enlightenment philosophy. The Constitution (1787) rejected monarchism and established checks and balances to prevent tyranny." }, { icon: "🚩", label: "Flag", value: "Stars and Stripes", desc: "13 red and white stripes (original colonies) and 50 white stars on blue (current states).", origin: "The Flag Resolution of June 14, 1777 established the first flag. The current 50-star design was adopted July 4, 1960, after Hawaii joined." }, { icon: "🗣️", label: "National Language", value: "English (de facto)", desc: "No official language at federal level, but English dominates government, education, and commerce.", origin: "English became dominant through British colonization (1607 onward). Over 350 languages are spoken across the country." }, { icon: "🦅", label: "State Emblem", value: "Great Seal — Bald Eagle", desc: "A bald eagle holding olive branches (peace) and arrows (war), with 'E Pluribus Unum.'", origin: "Adopted June 20, 1782. The bald eagle was chosen as a uniquely American bird after six years of design work." }, { icon: "✨", label: "National Motto", value: "In God We Trust", desc: "The official national motto, appearing on all US currency since 1957.", origin: "First appeared on US coins in 1864 during the Civil War. Replaced 'E Pluribus Unum' as the official motto in 1956 during the Cold War." }, { icon: "🎵", label: "National Anthem", value: "The Star-Spangled Banner", desc: "Celebrates the US flag surviving a British naval bombardment during the War of 1812.", origin: "Written by Francis Scott Key on September 14, 1814. Became the official national anthem by law on March 4, 1931." }, { icon: "🏛️", label: "Form of State", value: "Federal Presidential Republic", desc: "A federation of 50 semi-autonomous states, a directly elected president, and a bicameral Congress.", origin: "The Constitution of 1787 created this unique federal structure as a compromise between large and small states." }, { icon: "🎭", label: "Regional Culture", value: "Multicultural Mosaic", desc: "Jazz, blues, Broadway theater, Hollywood cinema, barbecue traditions, and vibrant immigrant cultural contributions.", origin: "American culture is a product of Native American traditions, European colonization, African enslaved peoples' contributions, and centuries of immigration." }] },
+            Japan: { flag: "🇯🇵", region: "Asia", capital: "Tokyo", pop: "125M", bg: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Constitutional Pacifism & Democracy", desc: "Parliamentary democracy with a unique constitution renouncing war (Article 9), combining Western democracy with Japanese cultural values.", origin: "The 1947 Constitution, drafted under American occupation after WWII, introduced pacifism into law alongside Confucian values of harmony." }, { icon: "🚩", label: "Flag", value: "Nisshōki (Hinomaru)", desc: "White field with a red circle representing the sun — Japan is the 'Land of the Rising Sun.'", origin: "Used since the 7th century. Standardized by Emperor Meiji in 1870. Became the official flag by law only in 1999." }, { icon: "🗣️", label: "National Language", value: "Japanese", desc: "Uses three scripts: Hiragana, Katakana, and Kanji — one of the world's most complex writing systems.", origin: "Japan borrowed the Chinese writing system (Kanji) in the 5th century. Hiragana and Katakana were developed in the 9th century." }, { icon: "🌸", label: "State Emblem", value: "Imperial Chrysanthemum Seal", desc: "A 16-petal chrysanthemum flower — the emblem of the Imperial Family and the Japanese state.", origin: "The chrysanthemum has been the imperial crest since Emperor Go-Toba (late 12th century). So sacred that ordinary citizens cannot use the 16-petal version." }, { icon: "✨", label: "National Motto", value: "(No Official Motto)", desc: "Japan has no official national motto, reflecting a cultural preference for actions over words.", origin: "Informal cultural principles like 'kaizen' (continuous improvement) and 'Yamato-damashii' (Japanese spirit) serve as national values." }, { icon: "🎵", label: "National Anthem", value: "Kimigayo", desc: "One of the world's shortest anthems (4 lines), wishing for the Emperor's reign to last 8,000 years.", origin: "Lyrics from the Kokin Wakashū anthology (905 AD). Officially recognized as anthem only in 1999 due to its imperial associations." }, { icon: "🏛️", label: "Form of State", value: "Constitutional Monarchy (Parliamentary)", desc: "A ceremonial emperor as head of state, with real power held by the Prime Minister and Parliament (Diet).", origin: "After WWII, the Emperor became a symbol only with no political power under Article 1 of the 1947 Constitution." }, { icon: "🎭", label: "Regional Culture", value: "Traditional Arts & Modern Pop Culture", desc: "Noh and Kabuki theater, tea ceremony, ikebana, samurai bushido code, alongside manga, anime, and J-pop.", origin: "Japanese culture developed in near-isolation for centuries around 'wabi-sabi' (beauty in imperfection) and 'mono no aware.'" }] },
+            France: { flag: "🇫🇷", region: "Europe", capital: "Paris", pop: "67M", bg: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Republican Secularism (Laïcité)", desc: "The French Republic is founded on Liberty, Equality, Fraternity, and strict separation of religion from public life.", origin: "Laïcité emerged from the French Revolution's rejection of Church power, formalized in the 1905 Law of Separation of Church and State." }, { icon: "🚩", label: "Flag", value: "Tricolore (Blue, White, Red)", desc: "Vertical stripes of blue (liberty), white (equality), and red (fraternity).", origin: "Created during the French Revolution in 1789 — combining the red and blue of Paris with the royal white. Adopted in 1794." }, { icon: "🗣️", label: "National Language", value: "French", desc: "French is the sole official language, spoken by 300+ million people worldwide — the 5th most spoken language.", origin: "The Ordonnance de Villers-Cotterêts (1539) established French as the official administrative language." }, { icon: "🌟", label: "State Emblem", value: "RF Monogram & Marianne", desc: "The 'RF' monogram and Marianne — a woman in a Phrygian cap — representing the Republic's values.", origin: "Marianne emerged during the French Revolution as a personification of liberty. She appears on stamps, coins, and government buildings." }, { icon: "✨", label: "National Motto", value: "Liberté, Égalité, Fraternité", desc: "Liberty, Equality, Fraternity — the three pillars of the French Republic born from the 1789 Revolution.", origin: "Each word was coined separately during the Revolution. Robespierre proposed the combination in 1790. Official motto since the Third Republic (1880)." }, { icon: "🎵", label: "National Anthem", value: "La Marseillaise", desc: "One of the world's most passionate anthems, calling citizens to arms against tyranny.", origin: "Written by Claude Joseph Rouget de Lisle on the night of April 25–26, 1792. Named after the Battalion of Marseille who sang it entering Paris." }, { icon: "🏛️", label: "Form of State", value: "Unitary Semi-Presidential Republic", desc: "A unique system where both the directly elected President and the Prime Minister share executive power.", origin: "The Fifth Republic was established by Charles de Gaulle in 1958 after governmental instability — a uniquely French constitutional innovation." }, { icon: "🎭", label: "Regional Culture", value: "Art de Vivre (Art of Living)", desc: "French cuisine (UNESCO), haute couture fashion, Impressionist art, Cannes Film Festival, Tour de France.", origin: "French cultural prestige dates to Louis XIV's Versailles court (17th century), which set European standards for art, fashion, and etiquette." }] },
+            UK: { flag: "🇬🇧", region: "Europe", capital: "London", pop: "67M", bg: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Constitutional Monarchy & Parliamentary Democracy", desc: "One of the world's oldest democracies, operating without a codified written constitution.", origin: "The Magna Carta (1215) first limited royal power. The Glorious Revolution (1688) established parliamentary sovereignty." }, { icon: "🚩", label: "Flag", value: "Union Jack", desc: "Combination of St George's Cross (England), St Andrew's Cross (Scotland), and St Patrick's Cross (Ireland).", origin: "First version created in 1606 combining England and Scotland flags. The Irish cross was added in 1801." }, { icon: "🗣️", label: "National Language", value: "English", desc: "English originated in England and became the world's most widely spoken second language through the British Empire.", origin: "Old English evolved from 5th-century Anglo-Saxon languages. British colonialism spread English to every continent." }, { icon: "🦁", label: "State Emblem", value: "Royal Coat of Arms", desc: "Three golden lions (England), a red lion (Scotland), and a golden harp (Ireland).", origin: "The three lions of England date to Richard I (the Lionheart) in 1198. Combined arms established after union with Scotland in 1603." }, { icon: "✨", label: "National Motto", value: "Dieu et mon droit", desc: "'God and my right' (in French) — asserting the monarch's divine right to rule.", origin: "Used by King Richard I at the Battle of Gisors (1198). Written in Norman French, reflecting the 11th-century Norman conquest's legacy." }, { icon: "🎵", label: "National Anthem", value: "God Save the King/Queen", desc: "One of the world's oldest and most influential national anthems.", origin: "First publicly performed in London theaters in 1745. The title changes between 'King' and 'Queen' depending on the reigning monarch." }, { icon: "🏛️", label: "Form of State", value: "Unitary Constitutional Monarchy", desc: "A parliamentary democracy where the monarch is ceremonial head of state and the Prime Minister holds executive power.", origin: "The monarch's role has gradually reduced while Parliament's power grew. The UK comprises England, Scotland, Wales, and Northern Ireland." }, { icon: "🎭", label: "Regional Culture", value: "Shakespeare to The Beatles", desc: "Shakespeare's theater, BBC journalism, pub culture, football (soccer), cricket, and Afternoon Tea.", origin: "British culture reflects its island geography, maritime history, and empire. English literature shaped global literature for centuries." }] },
+            Germany: { flag: "🇩🇪", region: "Europe", capital: "Berlin", pop: "83M", bg: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Federal Social Democracy (Ordoliberalism)", desc: "Germany's 'social market economy' combines free markets with strong social protections and worker rights.", origin: "Developed after WWII as a 'third way' between capitalism and socialism. Germany's Basic Law (1949) enshrines human dignity as inviolable." }, { icon: "🚩", label: "Flag", value: "Bundesflagge (Black-Red-Gold)", desc: "Horizontal stripes of black, red, and gold — representing unity, freedom, and prosperity.", origin: "Colors used by the Lützow Free Corps (1813). Adopted by the Frankfurt Parliament (1848). Restored in 1949 as Germany's democratic rebirth symbol." }, { icon: "🗣️", label: "National Language", value: "German", desc: "German is spoken by 130+ million people worldwide and is the most widely spoken native language in the EU.", origin: "Martin Luther's Bible translation (1534) standardized the language across dialects. German was the international language of science until the 20th century." }, { icon: "🦅", label: "State Emblem", value: "Federal Eagle (Bundesadler)", desc: "A golden eagle with wings spread on a red shield — one of the oldest heraldic symbols in Germany.", origin: "The eagle symbol dates to the Roman Empire and Charlemagne (800 AD). Restored in 1949 as a symbol of the break from Nazism." }, { icon: "✨", label: "National Motto", value: "Einigkeit und Recht und Freiheit", desc: "'Unity and Justice and Freedom' — from the third verse of the national anthem.", origin: "From Hoffmann von Fallersleben's poem (1841). Only the third verse is sung today — the first verse was misused by the Nazis." }, { icon: "🎵", label: "National Anthem", value: "Das Lied der Deutschen (Third Verse)", desc: "'Unity and Justice and Freedom' — the only verse sung of the three-verse poem.", origin: "Lyrics by Hoffmann von Fallersleben (1841), set to Haydn's Emperor Quartet melody (1797). Only the third verse designated after 1952." }, { icon: "🏛️", label: "Form of State", value: "Federal Parliamentary Republic", desc: "A federation of 16 states (Länder), with a ceremonial President and a Chancellor as head of government.", origin: "Founded in 1949 in West Germany based on the Grundgesetz. Extended to former East Germany after Reunification on October 3, 1990." }, { icon: "🎭", label: "Regional Culture", value: "Kulturnation (Cultural Nation)", desc: "Beethoven, Goethe, Bach, Kant; Oktoberfest, Christmas markets, and 16 distinct regional cultures.", origin: "Germany's identity as a 'Kulturnation' predates political unification (1871). German philosophy and classical music shaped Western civilization." }] },
+            China: { flag: "🇨🇳", region: "Asia", capital: "Beijing", pop: "1.4B", bg: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Socialism with Chinese Characteristics", desc: "Official communist ideology blending socialist state control with market economics under one-party rule.", origin: "The CCP came to power in 1949. Deng Xiaoping's reforms (1978) created 'Socialism with Chinese Characteristics' — market economy under one-party rule." }, { icon: "🚩", label: "Flag", value: "Five-Star Red Flag", desc: "Red background with one large and four small yellow stars representing the CCP and four social classes.", origin: "Designed by Zeng Liansong, adopted October 1, 1949, the day the People's Republic was proclaimed." }, { icon: "🗣️", label: "National Language", value: "Mandarin Chinese (Pǔtōnghuà)", desc: "Standard Chinese based on the Beijing dialect, written in Simplified Chinese characters.", origin: "The PRC standardized Putonghua in 1955, simplifying thousands of characters to increase literacy. China has 7 major dialect groups." }, { icon: "⭐", label: "State Emblem", value: "National Emblem of China", desc: "Tiananmen Gate under five stars, surrounded by wheat/rice and a gear.", origin: "Adopted September 20, 1950. Tiananmen is the symbolic heart of Chinese national identity — where the PRC was proclaimed in 1949." }, { icon: "✨", label: "National Motto", value: "Serve the People (Wèi Rénmín Fúwù)", desc: "A Maoist slogan emphasizing that government and party exist to serve ordinary people.", origin: "From Mao Zedong's eulogy for soldier Zhang Side, September 8, 1944. The core CCP principle visible everywhere from government buildings to military values." }, { icon: "🎵", label: "National Anthem", value: "March of the Volunteers", desc: "Originally a 1935 film song rallying Chinese resistance against Japanese invasion.", origin: "Written by Tian Han, composed by Nie Er in 1935. Became the de facto anthem in 1949. Temporarily changed during the Cultural Revolution, then restored in 1978." }, { icon: "🏛️", label: "Form of State", value: "Unitary One-Party Socialist Republic", desc: "A People's Republic governed by the CCP, with a National People's Congress.", origin: "Established October 1, 1949. The 2018 constitutional amendments removed presidential term limits, enabling indefinite rule." }, { icon: "🎭", label: "Regional Culture", value: "5,000 Years of Civilization", desc: "Peking Opera, dragon dances, calligraphy, martial arts, Confucian philosophy, and 8 major regional cuisines.", origin: "China is one of the world's oldest continuous civilizations. The Han Dynasty (206 BC–220 AD) established cultural patterns still visible today." }] },
+            India: { flag: "🇮🇳", region: "Asia", capital: "New Delhi", pop: "1.4B", bg: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Sovereign Socialist Secular Democratic Republic", desc: "These five words from the Constitution's preamble define India: independent, with social justice, secular, democratic, and republican.", origin: "India's Constitution (adopted January 26, 1950), drafted by B.R. Ambedkar, is one of the world's longest constitutions." }, { icon: "🚩", label: "Flag", value: "Tiranga (Tricolor)", desc: "Saffron (courage), white (peace/truth), and green (prosperity) stripes with the blue Ashoka Chakra (24 spokes).", origin: "Designed by Pingali Venkayya, adopted July 22, 1947. The 24 spokes represent 24 hours — the wheel of time always moving." }, { icon: "🗣️", label: "National Language", value: "Hindi & English (+ 22 Scheduled Languages)", desc: "India has no single 'national language' — Hindi, English, and 22 constitutionally recognized languages are official.", origin: "The choice to not designate a single national language was politically necessary — southern states strongly resisted Hindi imposition." }, { icon: "🦁", label: "State Emblem", value: "Lion Capital of Ashoka", desc: "Four lions standing back to back on the Dharma Chakra, representing power, courage, confidence, and pride.", origin: "Adapted from the 3rd century BCE Ashokan pillar at Sarnath. Adopted January 26, 1950. The motto 'Satyameva Jayate' is inscribed below." }, { icon: "✨", label: "National Motto", value: "Satyameva Jayate", desc: "'Truth Alone Triumphs' — from the ancient Mundaka Upanishad, emphasizing moral integrity over force.", origin: "From the Mundaka Upanishad (800–500 BCE). Appears on all Indian currency and government documents." }, { icon: "🎵", label: "National Anthem", value: "Jana Gana Mana", desc: "Describes India's diverse geography from Punjab to Bengal, celebrating national unity.", origin: "Written in Bengali by Nobel laureate Rabindranath Tagore in 1911. Tagore's songs serve as national anthems of both India and Bangladesh." }, { icon: "🏛️", label: "Form of State", value: "Federal Parliamentary Republic", desc: "A federal union of 28 states and 8 territories, with a ceremonial President and executive power in the Prime Minister.", origin: "India chose a parliamentary system (like Britain) over the presidential system in 1950. The Supreme Court guards the Constitution's basic structure." }, { icon: "🎭", label: "Regional Culture", value: "Unity in Incredible Diversity", desc: "Bharatanatyam dance, Carnatic and Hindustani classical music, yoga (UNESCO), Diwali and Holi festivals, Mughal architecture.", origin: "Indian culture is a layered synthesis of Vedic, Buddhist, Jain, Islamic, and colonial influences across 5,000 years." }] },
+            Brazil: { flag: "🇧🇷", region: "Americas", capital: "Brasília", pop: "215M", bg: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Federal Presidential Republic", desc: "A federal republic with a strong presidency, emphasizing social rights, economic development, and regional autonomy.", origin: "Brazil's 1988 Constitution (the 'Citizen Constitution') was written after 21 years of military dictatorship, protecting extensive social rights." }, { icon: "🚩", label: "Flag", value: "Auriverde (Gold-Green)", desc: "Green field (forests), yellow diamond (gold wealth), blue celestial globe with 27 stars and 'Ordem e Progresso.'", origin: "Adopted November 19, 1889. The stars represent each state as they appeared in the Rio sky on November 15, 1889." }, { icon: "🗣️", label: "National Language", value: "Portuguese", desc: "Brazilian Portuguese, the most widely spoken variety of Portuguese, with distinct vocabulary and pronunciation.", origin: "Portuguese arrived with Pedro Álvares Cabral in 1500. Brazilian Portuguese incorporated indigenous Tupi words and African influences." }, { icon: "⭐", label: "State Emblem", value: "National Arms of Brazil", desc: "A blue celestial globe with the Southern Cross, surrounded by a coffee branch and sugarcane.", origin: "Adopted November 19, 1889. Coffee and sugarcane represent Brazil's historical agricultural exports." }, { icon: "✨", label: "National Motto", value: "Ordem e Progresso", desc: "'Order and Progress' — from Auguste Comte's positivist philosophy, reflecting the republican founders' beliefs.", origin: "The only national flag in the world bearing a philosophical motto. Inspired by Comte's positivism, popular among Brazilian republicans." }, { icon: "🎵", label: "National Anthem", value: "Hino Nacional Brasileiro", desc: "A grand orchestral anthem celebrating Brazil's natural beauty and the struggle for independence.", origin: "Music composed by Francisco Manuel da Silva in 1822. The anthem is known for its difficult melodic range." }, { icon: "🏛️", label: "Form of State", value: "Federal Presidential Republic", desc: "A federation of 26 states and 1 federal district, with a directly elected president (4-year terms, maximum 2).", origin: "Brazil was a colony (1500-1822), then an empire (1822-1889), before becoming a republic. The federal structure was modeled after the US." }, { icon: "🎭", label: "Regional Culture", value: "Carnival and Cultural Fusion", desc: "Carnival (UNESCO), Samba and Forró music, Capoeira martial arts, Amazon indigenous traditions.", origin: "Brazilian culture results from three roots: Indigenous peoples, Portuguese colonizers, and African enslaved peoples — creating a unique fusion." }] },
+            Russia: { flag: "🇷🇺", region: "Europe", capital: "Moscow", pop: "144M", bg: "https://images.unsplash.com/photo-1513326738677-b964603b136d?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Sovereign Democracy / Russian Statism", desc: "Post-Soviet ideology emphasizing strong state authority, Russian sovereignty, traditional values, and great-power status.", origin: "After the Soviet collapse (1991), Putin's ideology (2000–) emphasizes state sovereignty over individual rights and 'Russkiy Mir' (Russian World)." }, { icon: "🚩", label: "Flag", value: "White-Blue-Red Tricolor", desc: "Horizontal stripes of white (peace), blue (faithfulness), and red (courage).", origin: "Introduced by Tsar Peter the Great (1696) after seeing the Dutch tricolor. Restored after the Soviet Union's dissolution in 1991." }, { icon: "🗣️", label: "National Language", value: "Russian", desc: "Most widely spoken Slavic language (150+ million native speakers) and one of the six UN official languages.", origin: "Old Church Slavonic, introduced by Saints Cyril and Methodius (9th century), formed the basis. Pushkin's literature standardized literary Russian." }, { icon: "🦅", label: "State Emblem", value: "Double-headed Eagle", desc: "A golden double-headed eagle representing Russia's dual nature facing both East and West.", origin: "Adopted from the Byzantine Empire by Ivan III (1472). Abolished in 1917, restored in 1993 after the Soviet collapse." }, { icon: "✨", label: "National Motto", value: "(No Official Motto)", desc: "Russia has no official motto. 'Strength in Unity' is sometimes used informally.", origin: "The Soviet motto was 'Workers of the world, unite!' Post-Soviet Russia has not adopted an official motto, reflecting an ongoing identity search." }, { icon: "🎵", label: "National Anthem", value: "State Anthem of Russia", desc: "Majestic anthem celebrating Russia's vast geography and historical greatness.", origin: "Music by Alexander Alexandrov (originally Soviet anthem, 1944). Putin restored the melody in 2000 with new lyrics by Sergei Mikhalkov." }, { icon: "🏛️", label: "Form of State", value: "Federal Semi-Presidential Republic", desc: "A federation of 85 subjects, with a very strong President who dominates executive power.", origin: "The 2020 constitutional amendments reset Putin's term limits, potentially extending his rule to 2036." }, { icon: "🎭", label: "Regional Culture", value: "Literature, Ballet & Orthodox Tradition", desc: "Tolstoy, Dostoevsky, Chekhov; Bolshoi Ballet; Tchaikovsky and Rachmaninoff; Russian Orthodox traditions.", origin: "Russian cultural identity was shaped by Orthodox Christianity (adopted 988 AD), Mongolian influence, and Peter the Great's European modernization." }] },
+            Italy: { flag: "🇮🇹", region: "Europe", capital: "Rome", pop: "60M", bg: "https://images.unsplash.com/photo-1529260830199-42c24126f198?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Parliamentary Republic (Anti-Fascist Foundation)", desc: "Italy's post-WWII republic was explicitly built on anti-fascist values — the Constitution (1948) prohibits reconstituting the fascist party.", origin: "After Mussolini's fascist regime and WWII, Italy abolished the monarchy by referendum (1946) and created a constitution preventing authoritarianism." }, { icon: "🚩", label: "Flag", value: "Il Tricolore (Green-White-Red)", desc: "Vertical stripes of green, white, and red. Inspired by the French Tricolore but with green replacing blue.", origin: "Adopted as the Italian national flag in 1797 by Napoleon's Cispadane Republic. Became the official flag at Italian unification (1861)." }, { icon: "🗣️", label: "National Language", value: "Italian", desc: "Descended from Latin — the closest living language to classical Latin, preserving many ancient Roman features.", origin: "Modern Italian standardized around Tuscan dialect. Dante's 'Divine Comedy' (1308-21) in vernacular Italian is considered the founding moment." }, { icon: "⭐", label: "State Emblem", value: "Star, Gear, Olive and Oak Branches", desc: "A white five-pointed star over a steel gear, flanked by olive (peace) and oak (strength) branches.", origin: "Adopted January 5, 1948. The gear represents Italian workers; the star (Stella d'Italia) is used since Roman times." }, { icon: "✨", label: "National Motto", value: "(No Official Motto)", desc: "Italy has no official motto. Risorgimento values guide national identity.", origin: "The Risorgimento (Resurgence) movement of the 19th century unified Italy in 1861 after centuries of fragmentation." }, { icon: "🎵", label: "National Anthem", value: "Fratelli d'Italia", desc: "'Brothers of Italy' — written during the Risorgimento, calling Italians to unite against foreign domination.", origin: "Written by Goffredo Mameli in 1847. Officially confirmed as the national anthem by law only on December 4, 2017." }, { icon: "🏛️", label: "Form of State", value: "Unitary Parliamentary Republic", desc: "A republic with a bicameral Parliament, a largely ceremonial President elected by Parliament.", origin: "Italy became a republic on June 2, 1946 (Republic Day). The 1948 Constitution created a deliberately weak executive." }, { icon: "🎭", label: "Regional Culture", value: "La Dolce Vita", desc: "Renaissance art (Leonardo, Michelangelo), opera, Ferrari design, Milan fashion, Roman architecture.", origin: "Italy was the birthplace of the Renaissance (14th-17th century), transforming global art and science." }] },
+            Mexico: { flag: "🇲🇽", region: "Americas", capital: "Mexico City", pop: "130M", bg: "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Federal Presidential Republic (Revolutionary Nationalism)", desc: "Mexico's political identity was shaped by the 1910 Revolution, emphasizing nationalism, anti-imperialism, and secular governance.", origin: "The Mexican Revolution (1910-1920) produced the 1917 Constitution — one of the first in the world to enshrine social and labor rights." }, { icon: "🚩", label: "Flag", value: "Bandera de México", desc: "Vertical stripes of green (hope), white (unity), and red (blood of heroes), with the Aztec eagle-and-snake emblem.", origin: "Colors inspired by the Army of the Three Guarantees (1821 independence). The Aztec eagle-and-snake legend told the Aztecs to found Tenochtitlan (now Mexico City)." }, { icon: "🗣️", label: "National Language", value: "Spanish (+ 68 indigenous languages recognized)", desc: "Mexican Spanish has distinct vocabulary influenced by Nahuatl: chocolate, tomato, avocado, chili are all Nahuatl words.", origin: "Spanish arrived with Hernán Cortés (1519). The 2003 Linguistic Rights Law recognized 68 indigenous languages as national languages." }, { icon: "🦅", label: "State Emblem", value: "Eagle and Serpent", desc: "An eagle devouring a serpent while perched on a nopal cactus — the Aztec founding myth.", origin: "According to legend, the god Huitzilopochtli told the Mexica to found their city where they saw an eagle eating a snake, found in Lake Texcoco in 1325." }, { icon: "✨", label: "National Motto", value: "(No Official Motto)", desc: "Mexico has no official motto. Values of homeland, freedom, work, and culture from the revolution guide national identity.", origin: "The lack of an official motto reflects Mexico's complex identity — balancing Spanish colonial heritage and Indigenous civilization." }, { icon: "🎵", label: "National Anthem", value: "Himno Nacional Mexicano", desc: "One of Latin America's most dramatic anthems, with 10 stanzas depicting war imagery against invaders.", origin: "Lyrics by Francisco González Bocanegra (1853), music by Jaime Nunó. Most ceremonies use only the chorus and 4th stanza." }, { icon: "🏛️", label: "Form of State", value: "Federal Presidential Republic", desc: "A federation of 31 states and 1 capital city, with a directly elected president (6-year term, no re-election ever).", origin: "The PRI party dominated politics 1929-2000 (71 years). Genuine multi-party democracy emerged only in the late 1990s." }, { icon: "🎭", label: "Regional Culture", value: "Mesoamerican Heritage", desc: "Day of the Dead (UNESCO), mariachi music, lucha libre wrestling, muralist art, Aztec and Mayan archaeological heritage.", origin: "Mexican culture is a mestizo (mixed) fusion of Indigenous Mesoamerican civilization and Spanish colonial culture." }] },
+            Canada: { flag: "🇨🇦", region: "Americas", capital: "Ottawa", pop: "38M", bg: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Liberal Democracy & Official Multiculturalism", desc: "Canada pioneered official multiculturalism (1971) as a state policy, distinguishing itself with a 'cultural mosaic' model.", origin: "PM Pierre Trudeau introduced the Multiculturalism Policy in 1971 — the first country in the world to adopt multiculturalism as official government policy." }, { icon: "🚩", label: "Flag", value: "Maple Leaf Flag", desc: "Red-white-red vertical bands with a red maple leaf at center.", origin: "Adopted February 15, 1965, after the 'Great Canadian Flag Debate.' Designer George Stanley based it on the Royal Military College flag." }, { icon: "🗣️", label: "National Language", value: "English and French (Bilingual)", desc: "Canada is officially bilingual under the Official Languages Act (1969).", origin: "The 1969 Official Languages Act formalized bilingualism after Quebec nationalist pressures. Canada is the world's most successful officially bilingual country." }, { icon: "🍁", label: "State Emblem", value: "Royal Coat of Arms of Canada", desc: "Lions, lilies, a red lion, Irish harp, and three red maple leaves, with the motto 'A Mari Usque Ad Mare.'", origin: "Granted by King George V in 1921. The 1994 updated version added a ribbon in Cree syllabics, acknowledging Indigenous peoples." }, { icon: "✨", label: "National Motto", value: "A Mari Usque Ad Mare", desc: "'From Sea to Sea' (Latin) — reflecting Canada's geography stretching from the Atlantic to the Pacific to the Arctic.", origin: "From Psalm 72:8. Used informally since Confederation (1867). Made the official motto in 1921 when the coat of arms was granted." }, { icon: "🎵", label: "National Anthem", value: "O Canada", desc: "Celebrates Canada's landscape with references to both English and French heritage in bilingual lyrics.", origin: "Music composed by Calixa Lavallée (1880). Made the official anthem July 1, 1980. Lyrics amended in 2018 to be gender-neutral." }, { icon: "🏛️", label: "Form of State", value: "Federal Parliamentary Constitutional Monarchy", desc: "A federation of 10 provinces and 3 territories, with the British monarch as head of state.", origin: "Confederation July 1, 1867. The Constitution Act (1982) gave Canada full constitutional independence from Britain." }, { icon: "🎭", label: "Regional Culture", value: "Cultural Mosaic", desc: "Indigenous First Nations traditions, Québécois French culture, Scottish Highland Games, Inuit art, and hockey as a national passion.", origin: "Canada's 'cultural mosaic' policy celebrates rather than assimilates cultural differences. Indigenous cultures represent 10,000+ years of heritage." }] },
+            Australia: { flag: "🇦🇺", region: "Oceania", capital: "Canberra", pop: "26M", bg: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Liberal Democracy & Federalism", desc: "Australia operates a Westminster parliamentary system combined with American-style federalism, with mandatory voting.", origin: "The Australian Constitution (1901) drew on both British Westminster traditions and the US federal model. Mandatory voting since 1924." }, { icon: "🚩", label: "Flag", value: "Australian National Flag", desc: "Blue Ensign with Union Jack, Southern Cross, and Commonwealth Star (7 points for 6 states + territories).", origin: "Adopted in 1901, selected from 32,823 competition entries. Debate about removing the Union Jack is ongoing." }, { icon: "🗣️", label: "National Language", value: "English (de facto)", desc: "Australia has no official language by law, but English is spoken by 98% of the population.", origin: "English arrived with the First Fleet (1788). Of 250+ original Aboriginal languages, only about 40 remain in active use." }, { icon: "🦘", label: "State Emblem", value: "Commonwealth Coat of Arms", desc: "A shield supported by a kangaroo and emu — two animals that cannot walk backwards, symbolizing forward progress.", origin: "Granted by King George V in 1912. The kangaroo and emu were chosen as uniquely Australian animals." }, { icon: "✨", label: "National Motto", value: "(No Official Motto)", desc: "Australia has no official motto. The egalitarian 'fair go' phrase best represents Australian values.", origin: "Unlike most nations, Australia never formally adopted a motto. 'Fair go' — everyone deserves a fair chance — is the most authentic expression of Australian values." }, { icon: "🎵", label: "National Anthem", value: "Advance Australia Fair", desc: "Celebrates Australia's natural beauty and the spirit of unity among its people.", origin: "Written by Peter Dodds McCormick in the 1870s. Became official anthem in 1984. In 2021, 'young' was changed to 'one' to acknowledge Indigenous history." }, { icon: "🏛️", label: "Form of State", value: "Federal Parliamentary Constitutional Monarchy", desc: "A federation of 6 states and 2 territories, with the British monarch as head of state.", origin: "Federation occurred January 1, 1901. Australia has preferential voting and proportional Senate representation." }, { icon: "🎭", label: "Regional Culture", value: "Indigenous Heritage & Multicultural Society", desc: "Aboriginal Dreamtime stories and art (60,000+ years), ANZAC Day, cricket, Australian Rules Football, surfing culture.", origin: "Aboriginal Australians have the world's oldest continuous culture. Multicultural identity includes British, Irish, Italian, Greek, and Asian immigration waves." }] },
+            SouthKorea: { flag: "🇰🇷", region: "Asia", capital: "Seoul", pop: "52M", bg: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Liberal Democracy with Confucian Values", desc: "Western-style liberal democracy combined with Confucian emphasis on education, family, hierarchy, and collective harmony.", origin: "South Korea's democracy was hard-won. The June Democratic Uprising (1987) forced transition to democracy after decades of dictatorship." }, { icon: "🚩", label: "Flag", value: "Taegukgi", desc: "White background (peace), red-blue Taeguk (yin-yang balance), and four black trigrams (heaven, earth, water, fire).", origin: "Adopted in 1883 during the Joseon Dynasty. White reflects the Korean preference for white clothing. The Taeguk represents cosmic balance." }, { icon: "🗣️", label: "National Language", value: "Korean (Hangul script)", desc: "Korean uses Hangul, a scientifically designed alphabet created in 1443 by King Sejong — learnable in hours.", origin: "King Sejong commissioned Hangul in 1443 to increase literacy among common people who couldn't master classical Chinese." }, { icon: "🌸", label: "State Emblem", value: "Mugunghwa (Rose of Sharon)", desc: "The national flower surrounds the national emblem, representing the Korean people's perseverance.", origin: "Mugunghwa blooms 100 days a year despite heat and cold, symbolizing the Korean people's endurance through centuries of hardship." }, { icon: "✨", label: "National Motto", value: "Hongik Ingan", desc: "'Broadly benefit humanity' — from the founding myth of ancient Korea by legendary founder Dangun (2333 BCE).", origin: "Appears in the Education Act and guides Korean educational philosophy — education should benefit all of humanity." }, { icon: "🎵", label: "National Anthem", value: "Aegukga (Song of Love of Country)", desc: "Invokes the eternal beauty of Mt. Baekdu, the Donghae Sea, and prays for God's protection of Korea.", origin: "Current melody composed by Ahn Eak-tai in 1935 while in exile. Used as the anthem since the Republic of Korea was established in 1948." }, { icon: "🏛️", label: "Form of State", value: "Unitary Presidential Republic", desc: "A unitary state with a directly elected president (5-year single term, no re-election) and a unicameral National Assembly.", origin: "The single 5-year term prevents authoritarian power concentration — a constitutional lesson from the dictatorships of the 20th century." }, { icon: "🎭", label: "Regional Culture", value: "Hallyu (Korean Wave)", desc: "K-pop, K-drama, Korean cinema (Parasite won Best Picture 2020), Taekwondo, Hanbok traditional clothing, Kimchi (UNESCO).", origin: "Korea's culture was shaped by 5,000 years of history. The Korean Wave (Hallyu) is a government-supported cultural export boosting global soft power." }] },
+            Egypt: { flag: "🇪🇬", region: "Africa", capital: "Cairo", pop: "104M", bg: "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Arab Republic (Arab Nationalism + Islamic values)", desc: "Egypt's identity combines Arab nationalism, Islamic cultural values, and Pharaonic heritage.", origin: "Nasser's Arab nationalist revolution (1952) created the modern Egyptian state ideology. Egypt is the cultural capital of the Arab world." }, { icon: "🚩", label: "Flag", value: "Horizontal Tricolor with Eagle of Saladin", desc: "Red (revolution), white (peace), and black (colonial past overcome), with the golden Eagle of Saladin.", origin: "The Eagle of Saladin commemorates the great Muslim general who defeated the Crusaders at Hattin (1187). Egypt's flag design has changed 11 times since independence." }, { icon: "🗣️", label: "National Language", value: "Arabic (Egyptian Arabic dialect)", desc: "Egyptian Arabic (Masri) is the most widely understood Arabic dialect in the world.", origin: "Arabic replaced Coptic as the dominant language after the Arab conquest (639-642 AD). Egyptian Arabic became the prestige dialect through Cairo's media dominance." }, { icon: "🦅", label: "State Emblem", value: "Eagle of Saladin", desc: "A golden eagle holding a scroll with 'Arab Republic of Egypt' in Arabic.", origin: "Adopted in 1984. Saladin (1137-1193) became a pan-Arab hero for recapturing Jerusalem from Crusaders." }, { icon: "✨", label: "National Motto", value: "(No Official Motto)", desc: "Egypt has no official motto. The ancient Egyptian concept of 'Ma'at' (truth, justice, harmony) guides national identity.", origin: "Modern Egypt's identity draws on three layers: ancient Pharaonic civilization, Arab-Islamic heritage, and modern republican values." }, { icon: "🎵", label: "National Anthem", value: "Bilady, Bilady, Bilady", desc: "'My homeland, my homeland, my homeland' — a deeply patriotic anthem expressing love for Egyptian soil.", origin: "Written by Younis al-Qadi, composed by Sayed Darwish in 1923 during the Egyptian Nationalist Revolution against British occupation." }, { icon: "🏛️", label: "Form of State", value: "Unitary Semi-Presidential Republic", desc: "Officially a republic, though power is heavily concentrated in the presidency and military.", origin: "Egypt has been a republic since 1953. Three of its presidents were military men. The 2013 military coup and 2019 constitutional reforms reflect ongoing civilian-military tensions." }, { icon: "🎭", label: "Regional Culture", value: "7,000 Years of Civilization", desc: "Ancient Pharaonic monuments (pyramids, Sphinx), Coptic Christian traditions, Islamic architecture, Sufi music.", origin: "Egypt is among the world's oldest civilizations (c. 3100 BCE). Cairo's Al-Azhar University (founded 970 AD) is one of the world's oldest universities." }] },
+            Turkey: { flag: "🇹🇷", region: "Asia", capital: "Ankara", pop: "85M", bg: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Kemalism (Secular Turkish Nationalism)", desc: "Founded on Atatürk's six principles: republicanism, nationalism, populism, statism, secularism, and revolutionism.", origin: "Mustafa Kemal Atatürk (1881-1938) transformed the collapsed Ottoman Empire into a modern secular republic (1923), with radical reforms including Latin alphabet adoption." }, { icon: "🚩", label: "Flag", value: "Red Flag with Star and Crescent", desc: "Red background with a white crescent and five-pointed star — among the world's most recognizable flags.", origin: "The crescent and star symbol predates Islam in the region. The current design was standardized in 1936." }, { icon: "🗣️", label: "National Language", value: "Turkish", desc: "Turkish was radically reformed by Atatürk in 1928 — replacing Arabic script with Latin alphabet.", origin: "Atatürk's Language Reform (1928) was one of history's most dramatic linguistic changes. The new Latin-based alphabet was taught to everyone within one year." }, { icon: "⭐", label: "State Emblem", value: "Crescent and Star", desc: "A red background with white crescent and star — matching the flag.", origin: "Turkey's emblem mirrors its flag, reflecting the simplification consistent with Atatürk's modernization ideology." }, { icon: "✨", label: "National Motto", value: "Yurtta Sulh, Cihanda Sulh", desc: "'Peace at Home, Peace in the World' — Atatürk's foreign policy principle.", origin: "Coined by Atatürk after WWI's devastation. Carved on his mausoleum (Anıtkabir) in Ankara." }, { icon: "🎵", label: "National Anthem", value: "İstiklâl Marşı (Independence March)", desc: "A passionate anthem written during the Turkish War of Independence.", origin: "Lyrics by Mehmet Akif Ersoy, adopted March 12, 1921. Mehmet Akif refused any payment for the poem." }, { icon: "🏛️", label: "Form of State", value: "Presidential Republic (since 2018)", desc: "Changed from parliamentary to presidential system in 2018, concentrating executive power in the President.", origin: "Turkey was a parliamentary republic 1923-2018. The 2017 constitutional referendum abolished the Prime Minister position." }, { icon: "🎭", label: "Regional Culture", value: "Anatolian Civilizations & Ottoman Heritage", desc: "Whirling Dervishes (UNESCO), Turkish tea and coffee culture, hammam (Turkish bath), carpet weaving.", origin: "Turkey sits at the crossroads of Europe and Asia. Anatolia hosted Hittites, Greeks, Romans, Byzantines, Seljuks, and Ottomans." }] },
+            Nigeria: { flag: "🇳🇬", region: "Africa", capital: "Abuja", pop: "220M", bg: "https://images.unsplash.com/photo-1618116206519-b76e3c40ef25?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Federal Presidential Republic (Ethnic Federalism)", desc: "Nigeria's federalism balances 250+ ethnic groups and 3 dominant groups (Hausa-Fulani, Yoruba, Igbo) through 36 states.", origin: "Nigeria's structure was shaped by British colonial rule (1914-1960) and the devastating Biafra Civil War (1967-70)." }, { icon: "🚩", label: "Flag", value: "Green-White-Green", desc: "Two vertical green stripes (vegetation and agriculture) and a central white stripe (peace and unity).", origin: "Designed by student Michael Taiwo Akinkunmi in London, selected from 2,870 entries in 1959." }, { icon: "🗣️", label: "National Language", value: "English (official) + Hausa, Yoruba, Igbo + 500+ languages", desc: "Nigeria has over 500 languages. English is the official language as a neutral choice among competing ethnic groups.", origin: "Nigerian Pidgin English (Naija) has become a genuine national lingua franca, blending English with African grammatical structures." }, { icon: "🦅", label: "State Emblem", value: "Eagle on Black Shield", desc: "A black shield (Niger River) with a Y-shape (Niger-Benue confluence), supported by two white horses.", origin: "Adopted in 1960 at independence. The black shield represents Nigeria's fertile soil." }, { icon: "✨", label: "National Motto", value: "Unity and Faith, Peace and Progress", desc: "Four values guiding Nigeria's national aspirations — unity, faith, peaceful coexistence, and development.", origin: "The motto reflects the importance of both religion and secular civic values in Nigeria's diverse society." }, { icon: "🎵", label: "National Anthem", value: "Nigeria We Hail Thee (restored 2024)", desc: "The original 1960 independence anthem restored in 2024, replacing 'Arise O Compatriots' used since 1978.", origin: "'Nigeria We Hail Thee' was the original independence anthem (1960-1978). President Tinubu controversially restored it in 2024." }, { icon: "🏛️", label: "Form of State", value: "Federal Presidential Republic", desc: "Africa's largest democracy: 36 states and 1 FCT, with a directly elected president (maximum two 4-year terms).", origin: "Nigeria's 2015 election was Africa's first peaceful transfer of power from a ruling party to an opposition candidate." }, { icon: "🎭", label: "Regional Culture", value: "Nollywood and Pan-African Cultural Power", desc: "Nollywood (world's 2nd largest film industry), Afrobeats music (Fela Kuti, Burna Boy), Yoruba Gelede masquerade (UNESCO).", origin: "Nigeria's cultural power comes from its scale (220M people) and diversity. Nollywood produces 2,500+ films/year." }] },
+            SouthAfrica: { flag: "🇿🇦", region: "Africa", capital: "Pretoria", pop: "60M", bg: "https://images.unsplash.com/photo-1574709903534-36ece41db9e0?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Constitutional Democracy (Rainbow Nation)", desc: "South Africa's post-apartheid identity is based on non-racialism, constitutional democracy, and the 'Rainbow Nation' concept.", origin: "The apartheid system (1948-1994) ended with Mandela's release (1990) and the first democratic election (1994) — one of history's most admired transformations." }, { icon: "🚩", label: "Flag", value: "Rainbow Flag (Six Colors)", desc: "Red, green, blue, black, gold, and white converging in a central green Y-shape representing convergence of diverse people.", origin: "Designed by Frederick Brownell, adopted April 27, 1994 (Freedom Day). The Y-shape represents the convergence of South Africa's diverse peoples." }, { icon: "🗣️", label: "National Language", value: "11 Official Languages", desc: "South Africa has 11 official languages — the most of any country in the world.", origin: "The 11 official languages were a deliberate constitutional choice (1996) to recognize all major language groups marginalized under apartheid." }, { icon: "🏵️", label: "State Emblem", value: "Secretary Bird with Khoisan Figures", desc: "A secretary bird above a protea flower, supported by two wildebeest and Khoisan figures.", origin: "Adopted April 27, 2000. Features Khoisan figures from the Linton Stone (8,000-year-old rock painting) — acknowledging South Africa's First People." }, { icon: "✨", label: "National Motto", value: "!Ke eː ǀxarra ǁke (Unity in Diversity)", desc: "Written in the extinct ǀXam Khoisan language — the only national motto in a language with no living native speakers.", origin: "By choosing a dead Khoisan language, South Africa acknowledges the genocide and displacement of its First Peoples." }, { icon: "🎵", label: "National Anthem", value: "Nkosi Sikelel' iAfrika / Die Stem", desc: "A unique hybrid of the ANC freedom song and part of the apartheid-era anthem, sung in 5 languages.", origin: "'Nkosi Sikelel' iAfrika' was written by Enoch Sontonga in 1897. Combined with 'Die Stem' as a compromise to include Afrikaner South Africans." }, { icon: "🏛️", label: "Form of State", value: "Unitary Constitutional Republic", desc: "A parliamentary republic where the President is both head of state and government, elected by the National Assembly.", origin: "The Constitutional Court has struck down government actions including presidential ones — demonstrating genuine constitutional governance." }, { icon: "🎭", label: "Regional Culture", value: "Ubuntu Philosophy & Diverse Traditions", desc: "Ubuntu ('I am because we are'), Zulu reed dance, Xhosa ceremonies, Afrikaner braai, Cape Malay cuisine, township jazz.", origin: "South Africa's culture reflects its extraordinary diversity: Bantu peoples, Khoisan hunter-gatherers, Cape Malay communities, and European colonial settlers." }] },
+            Spain: { flag: "🇪🇸", region: "Europe", capital: "Madrid", pop: "47M", bg: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Parliamentary Constitutional Monarchy", desc: "Spain transitioned from Franco's fascist dictatorship to democracy in 'La Transición' — one of history's most admired peaceful democratizations.", origin: "The Spanish Constitution (1978) was negotiated between post-Franco government and opposition parties. Spain joined NATO (1982) and EU (1986)." }, { icon: "🚩", label: "Flag", value: "Roja y Gualda (Red and Yellow)", desc: "Two red horizontal stripes and a wider yellow central stripe with the royal coat of arms.", origin: "The red and yellow combination dates to the naval flag of Charles III (1760). The current flag was established in the 1978 Constitution." }, { icon: "🗣️", label: "National Language", value: "Castilian Spanish + 4 co-official regional languages", desc: "Spanish (Castilian) is official. Catalan, Galician, Basque (Euskera), and Aranese are co-official in their regions.", origin: "Basque (Euskera) is Europe's most mysterious language — it predates Indo-European languages and has no known relatives anywhere in the world." }, { icon: "👑", label: "State Emblem", value: "Spanish Royal Coat of Arms", desc: "Quartered shield showing Castile, León, Aragon, Navarre, and Granada, with the Pillars of Hercules.", origin: "Evolved from the Catholic Monarchs (1492). The Pillars of Hercules represent the Strait of Gibraltar. 'Plus Ultra' symbolized Spain's Atlantic empire." }, { icon: "✨", label: "National Motto", value: "Plus Ultra", desc: "'Further Beyond' (Latin) — Spain's imperial motto from the Age of Discovery, symbolizing going beyond the known world.", origin: "Emperor Charles V's personal motto (1516). It appeared on the Pillars of Hercules, representing Spain's Atlantic empire and the spirit of exploration." }, { icon: "🎵", label: "National Anthem", value: "Marcha Real (Royal March)", desc: "One of only four national anthems in the world with no official lyrics — played as an instrumental.", origin: "One of Europe's oldest anthems (1761). Spain has tried several times to add official lyrics but failed due to political controversy." }, { icon: "🏛️", label: "Form of State", value: "Parliamentary Constitutional Monarchy (State of Autonomies)", desc: "A monarchy with 17 autonomous regions with significant self-government.", origin: "Spain's 'State of Autonomies' was designed in 1978 to satisfy regional aspirations. Catalonia's 2017 independence referendum highlighted ongoing tensions." }, { icon: "🎭", label: "Regional Culture", value: "Flamenco to Picasso", desc: "Flamenco dance and music (UNESCO), bullfighting (controversial), Running of the Bulls, Gaudí architecture, Don Quixote literature.", origin: "Spain's culture reflects 800 years of Moorish Islamic rule (Al-Andalus) creating a unique Christian-Islamic-Jewish cultural synthesis." }] },
+            Sweden: { flag: "🇸🇪", region: "Europe", capital: "Stockholm", pop: "10M", bg: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Social Democracy (Nordic Model)", desc: "Sweden is the archetypal social democratic state: high taxes, universal healthcare, free education, and strong gender equality.", origin: "The Social Democratic Party governed Sweden almost continuously 1932-2006, creating the 'Swedish Model' proving capitalism and social equality can coexist." }, { icon: "🚩", label: "Flag", value: "Blue with Nordic Cross (Gold)", desc: "Blue background with a golden/yellow Nordic cross offset to the left.", origin: "Sweden's blue and gold cross dates to at least the 16th century. The Nordic Cross design, shared by all Scandinavian flags, originated with Denmark's Dannebrog." }, { icon: "🗣️", label: "National Language", value: "Swedish + 5 national minority languages", desc: "Swedish is the official language. Finnish, Sami, Romani, Yiddish, and Meänkieli are recognized minority languages.", origin: "Swedish evolved from Old Norse. Modern Swedish and Norwegian are mutually intelligible. Swedish has influenced English through Viking contact." }, { icon: "👑", label: "State Emblem", value: "Three Crowns (Tre Kronor)", desc: "Three golden crowns on a blue background — the most ancient Swedish heraldic symbol.", origin: "Used since the 14th century. Possibly representing the three Magi, or the three Scandinavian kingdoms. Appears on the national football and hockey teams." }, { icon: "✨", label: "National Motto", value: "För Sverige — i tiden (royal motto)", desc: "'For Sweden — In Step with the Times' — Sweden has no official national motto.", origin: "Sweden's national identity is expressed through 'lagom' (just the right amount) — a uniquely Swedish value of moderation and balance." }, { icon: "🎵", label: "National Anthem", value: "Du Gamla, Du Fria (de facto)", desc: "'Thou Ancient, Thou Free' — never officially adopted by law but universally recognized.", origin: "Words by Richard Dybeck (1844), sung to a folk melody. Sweden is one of few major nations without a legally official national anthem." }, { icon: "🏛️", label: "Form of State", value: "Constitutional Monarchy (Parliamentary)", desc: "A parliamentary democracy with a ceremonial monarch (no political power since 1974).", origin: "The 1974 Instrument of Government stripped the King of all political powers. Sweden's Riksdag was made unicameral in 1971." }, { icon: "🎭", label: "Regional Culture", value: "Lagom & Design Culture", desc: "IKEA and functionalist design, ABBA music, Midsummer celebrations, Nobel Prizes (awarded in Stockholm), and fika coffee break culture.", origin: "Sweden's design philosophy — simplicity, functionality, democracy of design — is expressed globally through IKEA and Scandinavian design." }] },
+            Vietnam: { flag: "🇻🇳", region: "Asia", capital: "Hanoi", pop: "97M", bg: "https://images.unsplash.com/photo-1557750255-c76072a7aad1?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Marxism-Leninism / Ho Chi Minh Thought", desc: "Vietnam is governed by the Communist Party under Ho Chi Minh Thought — a unique blend of Marxism-Leninism with Vietnamese nationalism.", origin: "Ho Chi Minh (1890-1969) founded the CPV (1930) and led the struggle against French colonialism and American intervention. Vietnam defeated both major powers." }, { icon: "🚩", label: "Flag", value: "Red Flag with Yellow Star", desc: "Red background (communist revolution) with a yellow five-pointed star (the five main classes).", origin: "Designed by Lê Quang Sô, adopted September 2, 1945, the day Ho Chi Minh declared independence." }, { icon: "🗣️", label: "National Language", value: "Vietnamese", desc: "Vietnamese uses a Latin-based alphabet (Quoc Ngu) with 6 tones — one of the world's most tonal languages.", origin: "The Latin-based quốc ngữ script was created by Alexandre de Rhodes in 1651. The CPV promoted it to increase literacy." }, { icon: "⭐", label: "State Emblem", value: "Red Circle with Star, Gear, and Rice", desc: "A red circle with a golden star, surrounded by rice stalks and a gear, with a red ribbon.", origin: "Adopted 1955, resembling the emblems of China and the Soviet Union. Rice stalks represent agriculture; the gear represents industry." }, { icon: "✨", label: "National Motto", value: "Độc lập – Tự do – Hạnh phúc", desc: "'Independence – Freedom – Happiness' — Ho Chi Minh's 1945 Declaration of Independence values.", origin: "Ho Chi Minh opened his 1945 Declaration with words from America's own Declaration of Independence. These three words appear on all official Vietnamese documents." }, { icon: "🎵", label: "National Anthem", value: "Tiến Quân Ca (Army March)", desc: "A martial anthem composed during resistance against Japanese and French colonization.", origin: "Written and composed by Văn Cao in 1944. Adopted as the national anthem in 1946." }, { icon: "🏛️", label: "Form of State", value: "Unitary One-Party State", desc: "Governed by the Communist Party of Vietnam (CPV) as the only legal party.", origin: "Unified in 1976. Economic reforms (Đổi Mới, 1986) introduced market economics while maintaining political control — Vietnam's variant of China's model." }, { icon: "🎭", label: "Regional Culture", value: "Confucian Heritage & French Colonial Fusion", desc: "Water puppet theater (UNESCO), Áo Dài traditional dress, Tết (Lunar New Year), and cuisine (phở, bánh mì) fusing Vietnamese and French influences.", origin: "Vietnamese culture reflects 1,000 years of Chinese domination, 100 years of French colonialism, and the Vietnam War." }] },
+            Kenya: { flag: "🇰🇪", region: "Africa", capital: "Nairobi", pop: "55M", bg: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Devolved Presidential Republic (Harambee)", desc: "Kenya operates a devolved governance system (47 counties) with 'Harambee' (pulling together) as its founding national philosophy.", origin: "Jomo Kenyatta popularized 'Harambee' at independence (1963). Kenya's 2010 Constitution devolved power to 47 county governments." }, { icon: "🚩", label: "Flag", value: "Black, Red, Green with Maasai Shield", desc: "Black (people of Africa), red (blood for freedom), green (land/agriculture), with a Maasai shield and two crossed spears.", origin: "Adopted December 12, 1963, at independence. The Maasai shield and spears represent the defense of freedom." }, { icon: "🗣️", label: "National Language", value: "Swahili (national) + English (official) + 42+ local languages", desc: "Kiswahili is the most widely spoken Bantu language in Africa (200+ million speakers).", origin: "Swahili developed as a trade language along the East African coast, blending Bantu languages with Arabic, Persian, Portuguese, and English." }, { icon: "🦁", label: "State Emblem", value: "Harambee Coat of Arms", desc: "A shield and spears held by two lions, with a rooster above holding an axe, and 'Harambee' scroll.", origin: "Adopted at independence. The golden rooster represents a new dawn. The lions represent strength." }, { icon: "✨", label: "National Motto", value: "Harambee", desc: "'Let us all pull together' (Swahili) — Kenya's founding national call to unity and collective development.", origin: "Used by Kenyatta at independence (December 12, 1963). Harambee community self-help projects became a national institution." }, { icon: "🎵", label: "National Anthem", value: "Ee Mungu Nguvu Yetu", desc: "'O God of All Creation' — a prayer-like anthem asking for God's blessing on Kenya.", origin: "Written by the Kenya Anthem Commission in 1963 using a traditional Pokomo lullaby melody." }, { icon: "🏛️", label: "Form of State", value: "Devolved Presidential Republic", desc: "A republic with a directly elected president and unique devolution of power to 47 county governments.", origin: "The 2010 Constitution was a response to the 2007-2008 post-election violence that killed 1,300 people." }, { icon: "🎭", label: "Regional Culture", value: "42 Communities, One Nation", desc: "Maasai warrior culture, Kikuyu harvest festivals, Lamu Swahili stone town (UNESCO), long-distance running excellence.", origin: "Kenya's dominance in long-distance running is rooted in the Kalenjin community's high-altitude training traditions in the Rift Valley." }] },
+            Argentina: { flag: "🇦🇷", region: "Americas", capital: "Buenos Aires", pop: "45M", bg: "https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Federal Presidential Republic (Peronism)", desc: "Argentine politics is defined by Peronism — a nationalist, populist, and labor-rights ideology since Juan Perón (1946).", origin: "Juan Perón created a movement combining nationalism, worker rights, and state-led development. After the Dirty War (1976-83), Argentina's 1994 Constitution institutionalized human rights." }, { icon: "🚩", label: "Flag", value: "Albiceleste with Sol de Mayo", desc: "Light blue and white stripes with the golden Sun of May.", origin: "Manuel Belgrano created the flag during the Argentine War of Independence in 1812. The Sol de Mayo was added in 1818." }, { icon: "🗣️", label: "National Language", value: "Spanish (Rioplatense variety)", desc: "Argentine Spanish uses 'vos' instead of 'tú' and has Italian-influenced intonation.", origin: "Argentina received massive European immigration (1880-1930): 6 million Italians, 2 million Spaniards. This created Lunfardo slang." }, { icon: "🤝", label: "State Emblem", value: "National Coat of Arms", desc: "An oval shield with a rising sun held by two arms in friendship, with a Phrygian cap of liberty.", origin: "Adopted October 12, 1813. The Phrygian cap (bonete frigio) is the ancient Roman symbol of liberty." }, { icon: "✨", label: "National Motto", value: "En Unión y Libertad", desc: "'In Union and Liberty' — reflecting the challenge of uniting diverse provinces while establishing freedom.", origin: "Adopted in 1813 during the independence period. Civil wars between Unitarians and Federalists lasted decades." }, { icon: "🎵", label: "National Anthem", value: "Himno Nacional Argentino", desc: "One of Latin America's longest anthems, with fierce anti-Spanish verses rarely sung today.", origin: "Lyrics by Vicente López y Planes, music by Blas Parera (1813). Only the first and last verses plus chorus are sung today." }, { icon: "🏛️", label: "Form of State", value: "Federal Presidential Republic", desc: "A federation of 23 provinces and 1 autonomous city (Buenos Aires), with a directly elected president.", origin: "Argentina experienced 6 military coups in the 20th century. Return to democracy in 1983 after the Dirty War." }, { icon: "🎭", label: "Regional Culture", value: "Tango and Gaucho Heritage", desc: "Tango (UNESCO), gaucho cowboy culture, mate drinking, football (Messi), and asado barbecue.", origin: "Tango was born from the fusion of African, Spanish, and European music in Buenos Aires' port neighborhoods — Argentina's greatest cultural export." }] },
+            Iran: { flag: "🇮🇷", region: "Asia", capital: "Tehran", pop: "87M", bg: "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Islamic Republic (Velayat-e Faqih)", desc: "Iran is governed by the unique principle of 'Velayat-e Faqih' (Guardianship of the Islamic Jurist) — clerical rule.", origin: "Developed by Ayatollah Khomeini after the 1979 Islamic Revolution. The Supreme Leader outranks all elected officials." }, { icon: "🚩", label: "Flag", value: "Green, White, Red with Allah Emblem", desc: "Horizontal stripes of green (Islam), white (peace), and red (valor), with the stylized Allah emblem.", origin: "After the 1979 revolution, the lion-and-sun symbol was replaced with the stylized 'Allah.' The 22 repetitions of 'Allahu Akbar' represent February 11, 1979." }, { icon: "🗣️", label: "National Language", value: "Persian (Farsi)", desc: "Persian is one of the world's oldest living languages, with a literary tradition over 2,500 years old.", origin: "Old Persian was the language of Cyrus the Great's Achaemenid Empire (550-330 BCE). Rumi and Hafez wrote in Persian — now global literary treasures." }, { icon: "☪️", label: "State Emblem", value: "Stylized Allah", desc: "A stylized rendering of 'Allah' formed by a sword, two crescents, and a globe.", origin: "Designed by Hamid Nadimi, adopted in 1980. The design incorporates sword of justice, two crescents (like an open Quran), and the globe." }, { icon: "✨", label: "National Motto", value: "Independence, Freedom, Islamic Republic", desc: "The three demands of the 1979 Islamic Revolution.", origin: "These slogans were the rallying cries of the 1979 revolution. Many who demanded 'freedom' were later persecuted by the Islamic Republic they helped create." }, { icon: "🎵", label: "National Anthem", value: "Soroud-e Mellī-ye Iran", desc: "A majestic anthem celebrating the Islamic Republic's revolution and Iran's Islamic identity.", origin: "Current anthem composed by Hassan Riahi, adopted in 1990. Uses classical Persian musical modes, blending revolutionary content with ancient musical tradition." }, { icon: "🏛️", label: "Form of State", value: "Islamic Republic (Theocratic-Presidential hybrid)", desc: "The Supreme Leader holds ultimate authority; an elected President handles governance but is subordinate.", origin: "The Guardian Council vets all candidates for elections — effectively filtering out reformist candidates." }, { icon: "🎭", label: "Regional Culture", value: "Persian Civilization and Poetry", desc: "Persian poetry (Rumi, Hafez, Ferdowsi), Nowruz (Persian New Year, UNESCO), Persian miniature painting, carpet weaving.", origin: "Rumi (1207-1273) is now the best-selling poet in the United States. The Cyrus Cylinder (538 BCE) is considered the world's first human rights charter." }] },
+            Poland: { flag: "🇵🇱", region: "Europe", capital: "Warsaw", pop: "38M", bg: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Nationalist Conservatism (Solidarity Heritage)", desc: "Modern Polish identity is shaped by the Solidarity movement (Solidarność) that overthrew communism (1989) and a strong Catholic nationalist tradition.", origin: "The Solidarity trade union, led by Lech Wałęsa, began at the Gdańsk Shipyard (1980) as the first free trade union in the communist bloc." }, { icon: "🚩", label: "Flag", value: "White and Red", desc: "Two horizontal stripes: white (purity and honor) and red (valor and blood shed for Poland).", origin: "White and red have been Poland's heraldic colors since the 13th century. The flag in current form was adopted in 1919 after 123 years of partition." }, { icon: "🗣️", label: "National Language", value: "Polish", desc: "Polish uses Latin script with unique diacritical marks (ą, ę, ó, ź) — the second most spoken Slavic language after Russian.", origin: "After 123 years of partition, the Polish language became the most important symbol of national resistance and cultural survival." }, { icon: "🦅", label: "State Emblem", value: "White Eagle", desc: "A white eagle with a golden beak and golden crown on a red background.", origin: "The White Eagle has been Poland's symbol since the 10th century. Restoring the crown in 1989 was a powerful symbol of the end of communist rule." }, { icon: "✨", label: "National Motto", value: "Bóg, Honor, Ojczyzna", desc: "'God, Honor, Fatherland' — the traditional Polish motto on the Armed Forces' coat of arms.", origin: "This phrase reflects Poland's traditional values: Catholic faith, personal honor, and patriotism forged through centuries of partition and occupation." }, { icon: "🎵", label: "National Anthem", value: "Mazurek Dąbrowskiego", desc: "'Poland Has Not Yet Perished' — written in 1797 when Poland had been partitioned out of existence.", origin: "Written by Józef Wybicki in 1797 when Poland literally did not exist as a state (partitioned 1795-1918). The anthem is a vow of national survival." }, { icon: "🏛️", label: "Form of State", value: "Unitary Semi-Presidential Republic", desc: "A republic with a directly elected president (limited powers) and a Prime Minister accountable to a bicameral Parliament.", origin: "Poland's Third Republic began in 1989. Poland joined NATO (1999) and EU (2004)." }, { icon: "🎭", label: "Regional Culture", value: "Chopin, Pope John Paul II & Solidarity", desc: "Frédéric Chopin's music, Copernicus' astronomy, Marie Curie's science, Polish cuisine (pierogi, bigos).", origin: "Polish culture survived WWII's destruction: 20% of population killed. Warsaw was 85% destroyed and rebuilt brick by brick from historical paintings." }] },
+            Thailand: { flag: "🇹🇭", region: "Asia", capital: "Bangkok", pop: "71M", bg: "https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Constitutional Monarchy (Nation-Religion-King)", desc: "Thailand's ideology rests on three pillars: Nation (Chart), Religion (Buddhism), and King (Phramahakasat).", origin: "These three pillars were formulated by Rama VI (1881-1925). Thailand (Siam) is the only Southeast Asian country never colonized." }, { icon: "🚩", label: "Flag", value: "Trairong (Red-White-Blue)", desc: "Red (nation), white (Buddhism), and a central blue stripe (royalty) — the three pillars encoded in color.", origin: "Adopted in 1917 by Rama VI, who doubled the central stripe and turned it blue to represent the monarchy." }, { icon: "🗣️", label: "National Language", value: "Thai", desc: "Thai uses a unique abugida script derived from ancient Khmer, with five tones that completely change word meanings.", origin: "The Thai alphabet was created by King Ramkhamhaeng of Sukhothai Kingdom in 1283. Thai preserved many Sanskrit and Pali words from its Buddhist heritage." }, { icon: "🦅", label: "State Emblem", value: "Garuda", desc: "The mythical Garuda bird from Hindu-Buddhist mythology — a symbol of royal authority and divine power.", origin: "The Garuda has been the royal symbol in Thailand for centuries. Companies with royal warrants display the Garuda on their products." }, { icon: "✨", label: "National Motto", value: "Chat, Sasana, Phramahakasat", desc: "'Nation, Religion, King' — the three sacred pillars of Thai national identity.", origin: "Insulting the monarchy (lèse-majesté) is a criminal offense with up to 15 years imprisonment. The Thai flag's three colors directly represent these pillars." }, { icon: "🎵", label: "National Anthem", value: "Phleng Chat (National Anthem)", desc: "A martial anthem played daily at 8am and 6pm across Thailand — citizens are expected to stand.", origin: "Current music composed by Peter Feit (1932). Thailand has the unique tradition of playing the national anthem twice daily via public loudspeakers." }, { icon: "🏛️", label: "Form of State", value: "Constitutional Monarchy (with military influence)", desc: "A constitutional monarchy where the King is head of state, though military coups frequently interrupt civilian rule.", origin: "Thailand has experienced 13 coups since 1932. The most recent (2014) brought the military junta to power until 2019." }, { icon: "🎭", label: "Regional Culture", value: "Land of Smiles — Buddhist Culture", desc: "Theravada Buddhist temples (wats), Muay Thai martial arts, classical Khon masked dance, Loi Krathong lantern festival.", origin: "Thai culture has been shaped by 2,500 years of Theravada Buddhism. The wai (pressing palms together in greeting) expresses that the divine exists in every person." }] },
+            Switzerland: { flag: "🇨🇭", region: "Europe", capital: "Bern", pop: "8.7M", bg: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Direct Democracy & Armed Neutrality", desc: "Switzerland is unique for its direct democracy (citizens vote on laws 4 times/year) and permanent armed neutrality (since 1815).", origin: "Swiss neutrality was guaranteed by the Congress of Vienna (1815) and preserved through both World Wars, allowing Switzerland to host the UN, Red Cross, and WTO." }, { icon: "🚩", label: "Flag", value: "Red with White Cross", desc: "Red background with a white equilateral cross — one of only two square national flags (the other is Vatican City).", origin: "The white cross on red has been used by Swiss soldiers since 1339. The Swiss Red Cross (founded 1863) reversed the colors to create its symbol." }, { icon: "🗣️", label: "National Language", value: "German, French, Italian, Romansh (4 official)", desc: "Switzerland has four official languages — German (63%), French (23%), Italian (8%), and Romansh (0.5%).", origin: "Switzerland's linguistic diversity reflects its position at the crossroads of European cultures." }, { icon: "✝️", label: "State Emblem", value: "White Cross on Red (same as flag)", desc: "Switzerland uniquely uses the same design for its flag and state emblem.", origin: "The Henri Dunant (Swiss) founded the Red Cross (1863) by inverting the Swiss flag colors — creating one of the world's most recognized humanitarian symbols." }, { icon: "✨", label: "National Motto", value: "Unus pro omnibus, omnes pro uno", desc: "'One for all, all for one' — the unofficial Swiss motto appearing on the Federal Palace in Bern.", origin: "The Latin phrase reflects Switzerland's federal ideal of solidarity among cantons. Alexandre Dumas reportedly took this phrase from the Swiss motto for The Three Musketeers." }, { icon: "🎵", label: "National Anthem", value: "Swiss Psalm", desc: "A devout anthem asking for divine blessing on Switzerland's alps. Exists in all four official languages.", origin: "Music by Alberich Zwyssig (1841). Became the official national anthem only in 1981, after 200 years of using a different melody." }, { icon: "🏛️", label: "Form of State", value: "Federal Directorial Republic (Direct Democracy)", desc: "A unique system with a 7-member Federal Council that acts as collective head of state, with the presidency rotating annually.", origin: "Switzerland's Federal Council system avoids any concentration of power. Citizens can veto laws through popular initiatives — the world's most direct democracy." }, { icon: "🎭", label: "Regional Culture", value: "Watches, Chocolate & Alpine Culture", desc: "Swiss watchmaking (UNESCO heritage), chocolate (Lindt, Nestlé), Alpine yodeling, cheese culture (fondue, raclette), William Tell legend.", origin: "Swiss precision culture reflects centuries of mountain isolation requiring self-reliance. The Alps shaped Swiss identity: independence, hard work, and craftsmanship." }] },
+            Ghana: { flag: "🇬🇭", region: "Africa", capital: "Accra", pop: "32M", bg: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "Pan-Africanism and Constitutional Democracy", desc: "Ghana was the first sub-Saharan African country to gain independence (1957) under Kwame Nkrumah, whose Pan-African vision sought to unite Africa.", origin: "Nkrumah's independence speech made Ghana a beacon of African liberation. Ghana's democratic transitions since 1992 have made it West Africa's most stable democracy." }, { icon: "🚩", label: "Flag", value: "Red, Gold, Green with Black Star", desc: "Red (blood of independence fighters), gold (mineral wealth), green (forests), with a black star (freedom/African unity).", origin: "Adopted March 6, 1957 (Independence Day). The black star references Marcus Garvey's Black Star Line, symbolizing Black economic self-determination." }, { icon: "🗣️", label: "National Language", value: "English (official) + Akan, Ewe, Dagbani + others", desc: "Ghana has no indigenous official language — English was retained as the sole official language.", origin: "Ghana's ethnic composition made choosing any indigenous language politically impossible. English as a neutral choice paralleled India's model." }, { icon: "⭐", label: "State Emblem", value: "Black Star with Eagle and Shield", desc: "A shield divided into four parts (castle, cacao, gold sword, crossed swords), supported by two eagles.", origin: "Adopted 1957. The black eagle symbolizes African freedom. The design deliberately avoided British colonial heraldry." }, { icon: "✨", label: "National Motto", value: "Freedom and Justice", desc: "Reflecting Nkrumah's liberation philosophy — freedom from colonial rule and justice for all Ghanaians.", origin: "Nkrumah understood that formal independence without economic justice was incomplete liberation." }, { icon: "🎵", label: "National Anthem", value: "God Bless Our Homeland Ghana", desc: "A rousing anthem asking for divine blessing on Ghana.", origin: "Written by the Ghana Anthem Committee in 1957. Notable for its melodic accessibility." }, { icon: "🏛️", label: "Form of State", value: "Unitary Presidential Republic", desc: "A republican system with a directly elected president (maximum 2 terms of 4 years).", origin: "Ghana's Fourth Republic (1993-present) is the most stable in its history. The peaceful transfers of power in 2000, 2008, and 2016 established Ghana as a model democracy." }, { icon: "🎭", label: "Regional Culture", value: "Kente Cloth and Highlife Music", desc: "Kente cloth weaving (originally Asante royal fabric), Adinkra symbols, Highlife music, Durbar festivals.", origin: "Kente cloth, originally woven only for Asante kings, became a global symbol of African culture and Pan-Africanism." }] },
+            Ukraine: { flag: "🇺🇦", region: "Europe", capital: "Kyiv", pop: "44M", bg: "https://images.unsplash.com/photo-1621274403997-29b38b6a88e8?w=1400&q=80", id: [{ icon: "⚖️", label: "Ideology", value: "European Nationalism and Democratic Aspirations", desc: "Ukraine's national identity is defined by its European orientation (Euromaidan 2014), rejection of Russian control, and Cossack heritage.", origin: "Ukraine was under Russian/Soviet domination for centuries. The 2014 Euromaidan protests defined Ukraine's modern identity as pro-European. Russia's 2022 invasion crystallized this." }, { icon: "🚩", label: "Flag", value: "Blue and Yellow (Sky over Wheat)", desc: "Two equal horizontal stripes — blue (sky) over yellow (wheat fields).", origin: "Blue and yellow have been the colors of Galicia-Volhynia principality since the 12th century. Restored as the official flag in 1992 after independence." }, { icon: "🗣️", label: "National Language", value: "Ukrainian", desc: "Ukrainian uses Cyrillic-based script. Promotion of Ukrainian language is central to post-2014 national identity.", origin: "Russian imperial policy suppressed Ukrainian (the Ems Decree of 1876 banned Ukrainian publications). The post-2022 revival represents a profound cultural assertion." }, { icon: "⚜️", label: "State Emblem", value: "Tryzub (Trident)", desc: "A stylized golden trident on a blue background — an ancient symbol used by the Rurik dynasty of Kyiv Rus.", origin: "The tryzub was the symbol of Prince Vladimir the Great of Kyiv Rus (10th century), who Christianized Kyiv Rus (988 AD). It predates Russia as a state." }, { icon: "✨", label: "National Motto", value: "Slava Ukraini! Heroiam Slava!", desc: "'Glory to Ukraine! Glory to the Heroes!' — became Ukraine's most powerful national motto, especially after 2022.", origin: "Originally a nationalist phrase from the Ukrainian People's Republic era (1917-21). Since Russia's 2022 invasion, it became the official Armed Forces salutation." }, { icon: "🎵", label: "National Anthem", value: "Shche ne vmerla Ukraina", desc: "'Ukraine Has Not Yet Perished' — written in 1862 when Ukraine was under Russian and Austrian imperial control.", origin: "Words by Pavlo Chubyns'kyi (1862), music by Mykhailo Verbytsky. Like Poland's anthem, written when the nation was under foreign domination." }, { icon: "🏛️", label: "Form of State", value: "Unitary Semi-Presidential Republic", desc: "A republic with a directly elected president sharing executive power with a Prime Minister.", origin: "Russia's 2022 full-scale invasion transformed Ukraine's national identity — crystallizing it around resistance, European belonging, and democratic values." }, { icon: "🎭", label: "Regional Culture", value: "Cossack Heritage and Folk Traditions", desc: "Cossack history, Ukrainian embroidery (vyshyvanka), Easter egg art (pysanky, UNESCO), Hopak folk dance.", origin: "Ukrainian Cossacks (15th-18th century) developed a unique culture of free warrior communities on the Eurasian steppe, mythologized as the embodiment of Ukrainian freedom." }] }
+        };
+
+        // ═══════════════════════════════════════
+        //  STATE
+        // ═══════════════════════════════════════
+        var visited = new Set(), score = 0, region = 'All', view = 'g';
+        var curCountry = null, quizQs = [], quizIdx = 0, quizAnswered = false;
+        var quizScore = 0, quizStreak = 0, bestStreak = 0, quizHistory = [], quizDone = false;
+
+        // ═══════════════════════════════════════
+        //  GRID
+        // ═══════════════════════════════════════
+        function renderGrid() {
+            var q = document.getElementById('si').value.toLowerCase();
+            var sort = document.querySelector('.sort-s').value;
+            var entries = Object.entries(C);
+            if (region !== 'All') entries = entries.filter(function (e) { return e[1].region === region; });
+            if (q) entries = entries.filter(function (e) { return e[0].toLowerCase().includes(q) || e[1].capital.toLowerCase().includes(q); });
+            if (sort === 'az') entries.sort(function (a, b) { return a[0].localeCompare(b[0]); });
+            else if (sort === 'za') entries.sort(function (a, b) { return b[0].localeCompare(a[0]); });
+            else if (sort === 'vis') entries.sort(function (a, b) { return (visited.has(b[0]) ? 1 : 0) - (visited.has(a[0]) ? 1 : 0); });
+            document.getElementById('rn').textContent = entries.length;
+            var g = document.getElementById('cgrid');
+            g.innerHTML = '';
+            if (!entries.length) {
+                g.innerHTML = '<div class="empty"><p>No countries found</p></div>';
+                return;
+            }
+            var isLv = g.classList.contains('lv');
+            entries.forEach(function (e, i) {
+                var name = e[0], d = e[1];
+                var el = document.createElement('div');
+                el.className = 'cc' + (visited.has(name) ? ' vis' : '');
+                el.style.animationDelay = (i * 0.025) + 's';
+                el.addEventListener('click', function () { openCountry(name); });
+                if (isLv) {
+                    el.innerHTML =
+                        '<span class="cc-flag">' + d.flag + '</span>' +
+                        '<div class="cc-info">' +
+                        '<div class="cc-name">' + name + '</div>' +
+                        '<div class="cc-sub">' + d.region + ' · ' + d.capital + '</div>' +
+                        '</div>' +
+                        '<div class="cc-link">Explore <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 6h8M7 3l3 3-3 3"/></svg></div>';
+                } else {
+                    el.innerHTML =
+                        '<span class="cc-flag">' + d.flag + '</span>' +
+                        '<div class="cc-name">' + name + '</div>' +
+                        '<div class="cc-sub">' + d.region + '</div>' +
+                        '<div class="cc-link">Explore <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 6h8M7 3l3 3-3 3"/></svg></div>';
+                }
+                g.appendChild(el);
+            });
+        }
+
+        function setRegion(r, el) {
+            region = r;
+            document.querySelectorAll('.fp').forEach(function (b) { b.classList.remove('on'); });
+            el.classList.add('on');
+            renderGrid();
+        }
+
+        function setView(v) {
+            view = v;
+            var g = document.getElementById('cgrid');
+            if (v === 'l') g.classList.add('lv'); else g.classList.remove('lv');
+            document.getElementById('vbg').classList.toggle('on', v === 'g');
+            document.getElementById('vbl').classList.toggle('on', v === 'l');
+            renderGrid();
+        }
+
+        // ═══════════════════════════════════════
+        //  MODAL
+        // ═══════════════════════════════════════
+        function openCountry(name) {
+            curCountry = name;
+            var d = C[name];
+            visited.add(name);
+            document.getElementById('nv').textContent = visited.size;
+            renderGrid();
+
+            // Set bg image
+            document.getElementById('mhero').style.backgroundImage = 'url(' + d.bg + ')';
+            document.getElementById('mflag').textContent = d.flag;
+            document.getElementById('mname').textContent = name;
+            document.getElementById('mmeta').innerHTML =
+                '<div class="mchip">📍 ' + d.capital + '</div>' +
+                '<div class="mchip">🌍 ' + d.region + '</div>' +
+                '<div class="mchip">👥 ' + d.pop + '</div>';
+
+            // Identity cards
+            var html = '<div class="id-grid">';
+            d.id.forEach(function (item) {
+                html +=
+                    '<div class="idc">' +
+                    '<div class="idc-icon">' + item.icon + '</div>' +
+                    '<div class="idc-label">' + item.label + '</div>' +
+                    '<div class="idc-value">' + item.value + '</div>' +
+                    '<div class="idc-desc">' + item.desc + '</div>' +
+                    '<div class="idc-origin"><strong>📖 Origin</strong>' + item.origin + '</div>' +
+                    '</div>';
+            });
+            html += '</div>';
+            document.getElementById('tab-id').innerHTML = html;
+
+            // Reset quiz
+            renderQuizStart();
+
+            // Switch to identity tab by default
+            document.querySelectorAll('.mtab').forEach(function (t) { t.classList.remove('on'); });
+            document.querySelector('.mtab[data-tab="id"]').classList.add('on');
+            document.querySelectorAll('.mpanel').forEach(function (p) { p.classList.remove('on'); });
+            document.getElementById('tab-id').classList.add('on');
+
+            // Show modal
+            document.getElementById('ov-bg').classList.add('open');
+            document.getElementById('ov').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMod() {
+            document.getElementById('ov-bg').classList.remove('open');
+            document.getElementById('ov').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function switchTab(name, el) {
+            document.querySelectorAll('.mtab').forEach(function (t) { t.classList.remove('on'); });
+            el.classList.add('on');
+            document.querySelectorAll('.mpanel').forEach(function (p) { p.classList.remove('on'); });
+            document.getElementById('tab-' + name).classList.add('on');
+        }
+
+        // ═══════════════════════════════════════
+        //  ABOUT (simple toast)
+        // ═══════════════════════════════════════
+        function showAbout() {
+            toast('WorldIdentity — Explore 50 nations, then test your TOEIC grammar knowledge!');
+        }
+
+        // ═══════════════════════════════════════
+        //  TOEIC GRAMMAR QUIZ ENGINE
+        // ═══════════════════════════════════════
+        function shuffle(arr) {
+            var a = arr.slice();
+            for (var i = a.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var t = a[i]; a[i] = a[j]; a[j] = t;
+            }
+            return a;
+        }
+
+        // ── MASTER QUESTION BANK ──────────────────────────────────
+        var QB = [
+            // TO BE
+            {
+                type: 'tobe', tag: 'To Be',
+                q: 'The documents on the manager\'s desk ___ reviewed before the meeting starts.',
+                a: 'are', opts: ['are', 'is', 'was', 'were'],
+                rule: 'Subject-Verb Agreement (Present)',
+                explain: '"The documents" is plural → we use <strong>"are"</strong>, not "is". Rule: singular subject → is/was; plural subject → are/were. The phrase "on the manager\'s desk" only modifies the subject — do not be misled by it.'
+            },
+            {
+                type: 'tobe', tag: 'To Be',
+                q: 'Neither the manager nor the employees ___ informed about the schedule change.',
+                a: 'were', opts: ['were', 'was', 'are', 'is'],
+                rule: 'Neither...nor (Proximity Rule)',
+                explain: 'With <strong>"neither...nor"</strong>, the verb agrees with the noun <strong>closest</strong> to it. "The employees" (plural) is closest → <strong>"were"</strong>. Example: "Neither he nor they <u>were</u> ready."'
+            },
+            {
+                type: 'tobe', tag: 'To Be',
+                q: 'The committee ___ unable to reach a decision due to conflicting opinions among its members.',
+                a: 'was', opts: ['was', 'were', 'is', 'are'],
+                rule: 'Collective Noun (Singular)',
+                explain: '"The committee" is a collective noun → treated as <strong>singular</strong> in American English → use <strong>"was"</strong>. Other collective nouns: team, staff, government, jury, family.'
+            },
+            {
+                type: 'tobe', tag: 'To Be',
+                q: 'There ___ a number of unresolved issues that need to be addressed at the conference.',
+                a: 'are', opts: ['are', 'is', 'was', 'were'],
+                rule: '"A number of" = Plural',
+                explain: '"<strong>A number of</strong>" means several/many → takes a <strong>plural verb</strong>. "There <u>are</u> a number of issues." Contrast: "The number of issues <u>is</u> large" (singular).'
+            },
+            {
+                type: 'tobe', tag: 'To Be',
+                q: 'Each of the reports submitted by the researchers ___ carefully examined by the board.',
+                a: 'was', opts: ['was', 'were', 'has been', 'have been'],
+                rule: '"Each of" = Singular Verb',
+                explain: '"Each of" always takes a <strong>singular verb</strong>. "Each of the reports" → <strong>"was"</strong>. Similarly: "Everyone was," "Anyone is," "Each one has."'
+            },
+            {
+                type: 'tobe', tag: 'To Be',
+                q: 'The news about the company\'s merger ___ surprising to most shareholders.',
+                a: 'was', opts: ['was', 'were', 'is being', 'are'],
+                rule: 'Uncountable Nouns (Singular)',
+                explain: '"News" looks plural but is an <strong>uncountable noun</strong> → always singular → <strong>"was"</strong>. Other tricky uncountable nouns: information, evidence, advice, furniture, equipment, knowledge.'
+            },
+
+            // TENSE
+            {
+                type: 'tense', tag: 'Verb Tense',
+                q: 'By the time the auditor arrived, the finance team already ___ all the quarterly reports.',
+                a: 'had submitted', opts: ['had submitted', 'submitted', 'has submitted', 'was submitting'],
+                rule: 'Past Perfect (Before Past Event)',
+                explain: '"By the time + past simple" → the earlier action uses <strong>Past Perfect (had + past participle)</strong>. Timeline: team submitted → THEN auditor arrived.'
+            },
+            {
+                type: 'tense', tag: 'Verb Tense',
+                q: 'The construction of the new headquarters ___ since last January, and it is expected to finish next year.',
+                a: 'has been underway', opts: ['has been underway', 'was underway', 'is underway', 'had been underway'],
+                rule: 'Present Perfect (Since = past to now)',
+                explain: '"Since last January" + action still continuing → <strong>Present Perfect: has been</strong>. We do NOT use simple past because the action is still ongoing.'
+            },
+            {
+                type: 'tense', tag: 'Verb Tense',
+                q: 'The CEO announced that the company ___ its overseas operations the following quarter.',
+                a: 'would expand', opts: ['would expand', 'will expand', 'expanded', 'has expanded'],
+                rule: 'Reported Speech — Backshift (will → would)',
+                explain: 'In reported speech, when the reporting verb is past ("announced"), future "will" shifts to <strong>"would"</strong>. This is called <strong>backshift</strong>.'
+            },
+            {
+                type: 'tense', tag: 'Verb Tense',
+                q: 'She ___ for the company for twelve years before she was promoted to senior director.',
+                a: 'had been working', opts: ['had been working', 'has been working', 'was working', 'worked'],
+                rule: 'Past Perfect Continuous (Duration before past event)',
+                explain: 'Twelve years of duration BEFORE a specific past event (promotion) → <strong>Past Perfect Continuous (had been + -ing)</strong>. Emphasizes the <strong>duration</strong>.'
+            },
+            {
+                type: 'tense', tag: 'Verb Tense',
+                q: 'Unless the client ___ the invoice by Friday, the project will be put on hold.',
+                a: 'settles', opts: ['settles', 'will settle', 'would settle', 'settled'],
+                rule: 'First Conditional — "Unless" clause = Present Simple',
+                explain: '"Unless" = "if...not." In <strong>First Conditional</strong>, use <strong>Present Simple</strong> in the unless-clause. Never use "will" after unless/if in the condition clause.'
+            },
+            {
+                type: 'tense', tag: 'Verb Tense',
+                q: 'The marketing department ___ on a new campaign every time a budget increase is approved.',
+                a: 'works', opts: ['works', 'is working', 'worked', 'will work'],
+                rule: 'Present Simple for Habitual Action',
+                explain: '"<strong>Every time</strong>" introduces a habitual/repeated condition → use <strong>Present Simple</strong> in both clauses.'
+            },
+
+            // PASSIVE
+            {
+                type: 'passive', tag: 'Passive Voice',
+                q: 'The annual performance reviews ___ by the human resources department every December.',
+                a: 'are conducted', opts: ['are conducted', 'conduct', 'have conducted', 'are conducting'],
+                rule: 'Present Simple Passive',
+                explain: 'The subject "reviews" receives the action → <strong>Passive: am/is/are + past participle</strong>. "Reviews" is plural → <strong>"are conducted."</strong>'
+            },
+            {
+                type: 'passive', tag: 'Passive Voice',
+                q: 'The new policy ___ to all employees before it takes effect next month.',
+                a: 'will be communicated', opts: ['will be communicated', 'will communicate', 'is communicated', 'communicates'],
+                rule: 'Future Passive: will + be + past participle',
+                explain: 'Future passive structure: <strong>will + be + past participle</strong>. "Will communicate" would require the policy to do the communicating — impossible.'
+            },
+            {
+                type: 'passive', tag: 'Passive Voice',
+                q: 'The contract ___ after both parties had reviewed all the terms and conditions.',
+                a: 'was signed', opts: ['was signed', 'signed', 'had signed', 'has been signed'],
+                rule: 'Past Simple Passive',
+                explain: 'The contract received the action → <strong>Past Passive: was/were + past participle</strong>. "The contract" is singular → <strong>"was signed."</strong>'
+            },
+            {
+                type: 'passive', tag: 'Passive Voice',
+                q: 'The research findings ___ in a peer-reviewed journal before the public announcement.',
+                a: 'had been published', opts: ['had been published', 'were published', 'have been published', 'were publishing'],
+                rule: 'Past Perfect Passive',
+                explain: 'Completed BEFORE another past event → <strong>Past Perfect Passive: had been + past participle</strong>. Timeline: published → THEN announcement.'
+            },
+
+            // MODAL
+            {
+                type: 'modal', tag: 'Modal Verbs',
+                q: 'Employees ___ submit their expense reports no later than the fifth of each month.',
+                a: 'must', opts: ['must', 'should', 'might', 'could'],
+                rule: 'Must = Strong Obligation (Non-negotiable Rule)',
+                explain: '"<strong>Must"</strong> = strong obligation / company policy rule. "Should" = recommendation. "Might/could" = possibility. "Must submit by the 5th" = mandatory.'
+            },
+            {
+                type: 'modal', tag: 'Modal Verbs',
+                q: 'The IT team ___ have installed the security update before the system was breached.',
+                a: 'should', opts: ['should', 'must', 'would', 'might'],
+                rule: 'Should have + past participle = Past Regret/Criticism',
+                explain: '"<strong>Should have installed</strong>" = they did NOT install it, and that was a mistake (past criticism). "Must have installed" = certain they installed it.'
+            },
+            {
+                type: 'modal', tag: 'Modal Verbs',
+                q: 'You ___ bring your original identification document; a photocopy is not acceptable.',
+                a: 'must', opts: ['must', 'need', 'shall', 'had better'],
+                rule: 'Must = Strong Necessity (Formal)',
+                explain: '"<strong>Must"</strong> = strong necessity. "Photocopy is not acceptable" confirms the strict requirement. In formal written instructions, "must" is the standard.'
+            },
+            {
+                type: 'modal', tag: 'Modal Verbs',
+                q: 'The customer ___ have received the package already, as it was shipped five days ago.',
+                a: 'should', opts: ['should', 'must', 'can', 'would'],
+                rule: 'Should have = Expectation Based on Logic',
+                explain: '"<strong>Should have + past participle</strong>" here expresses <strong>expectation based on logic</strong> (5 days = enough time). Contrast: "must have" = strong certainty.'
+            },
+
+            // SUBJECT-VERB AGREEMENT
+            {
+                type: 'agree', tag: 'Subject-Verb Agreement',
+                q: 'The quality of the products manufactured in this facility ___ exceptionally high standards.',
+                a: 'meets', opts: ['meets', 'meet', 'meeting', 'met'],
+                rule: 'Head Noun Agreement (Ignore prepositional phrase)',
+                explain: 'The head noun is "quality" — singular. "Of the products manufactured in this facility" is a prepositional modifier. Singular head → singular verb: <strong>"meets."</strong>'
+            },
+            {
+                type: 'agree', tag: 'Subject-Verb Agreement',
+                q: 'Statistics on consumer spending ___ that purchasing habits have changed significantly.',
+                a: 'indicate', opts: ['indicate', 'indicates', 'is indicating', 'has indicated'],
+                rule: 'Statistics (plural data) vs Statistics (field of study)',
+                explain: '"Statistics" (data/numbers) is <strong>plural</strong> → "indicate." But: "Statistics <u>is</u> a difficult subject" (field of study = singular). Context matters!'
+            },
+            {
+                type: 'agree', tag: 'Subject-Verb Agreement',
+                q: 'Not only the CEO but also the board members ___ expected to attend the press conference.',
+                a: 'are', opts: ['are', 'is', 'was', 'were'],
+                rule: '"Not only...but also" — Proximity Rule',
+                explain: 'With <strong>"not only...but also"</strong>, the verb agrees with the noun <strong>closest</strong> to the verb. "The board members" (plural) → <strong>"are."</strong>'
+            },
+
+            // PREPOSITIONS
+            {
+                type: 'prep', tag: 'Prepositions',
+                q: 'The board will finalize the restructuring plan ___ the end of the fiscal year.',
+                a: 'by', opts: ['by', 'until', 'since', 'for'],
+                rule: 'By = Deadline; Until = Continuous Action',
+                explain: '"<strong>By</strong>" = deadline (completed at or before that time). "Finalize" is a single completed action → use "by." "Until" = continuous up to a point.'
+            },
+            {
+                type: 'prep', tag: 'Prepositions',
+                q: 'The proposal was rejected ___ the grounds that it lacked sufficient financial justification.',
+                a: 'on', opts: ['on', 'in', 'for', 'at'],
+                rule: 'Fixed Phrase: "on the grounds that"',
+                explain: '"<strong>On the grounds that</strong>" is a fixed expression meaning "because" or "for the reason that." Other fixed phrases: "in terms of," "by means of," "at the expense of."'
+            },
+            {
+                type: 'prep', tag: 'Prepositions',
+                q: 'Ms. Richardson has been ___ charge of the overseas distribution network for three years.',
+                a: 'in', opts: ['in', 'at', 'on', 'under'],
+                rule: 'In charge of = Responsible for',
+                explain: '"<strong>In charge of</strong>" = responsible for managing something. Fixed collocation. Other TOEIC collocations: responsible for, capable of, aware of, familiar with.'
+            },
+
+            // ARTICLES
+            {
+                type: 'article', tag: 'Articles',
+                q: 'She gave ___ informative presentation on the company\'s expansion strategy.',
+                a: 'an', opts: ['an', 'a', 'the', '—'],
+                rule: 'A vs An — Based on Sound (not spelling)',
+                explain: 'Use <strong>"an"</strong> before words beginning with a <strong>vowel sound</strong>. "Informative" starts with /ɪ/ → <strong>"an informative."</strong> Remember: it\'s the sound, not the letter.'
+            },
+            {
+                type: 'article', tag: 'Articles',
+                q: '___ feedback we received from the focus group was more positive than expected.',
+                a: 'The', opts: ['The', 'A', 'An', '—'],
+                rule: 'The = Specific Reference (Both Parties Know Which)',
+                explain: 'Use <strong>"the"</strong> when referring to something <strong>specific</strong> that both speaker and listener can identify. "The feedback we received" = specific feedback from a specific focus group.'
+            },
+            {
+                type: 'article', tag: 'Articles',
+                q: 'Reaching ___ agreement on the contract terms took longer than the negotiators had anticipated.',
+                a: 'an', opts: ['an', 'a', 'the', '—'],
+                rule: '"Reach an agreement" — Business Collocation',
+                explain: '"<strong>Reach an agreement</strong>" is a fixed business English collocation. "Agreement" begins with vowel sound /ə/ → "an." Learn as a chunk.'
+            },
+
+            // WORD FORM
+            {
+                type: 'wordform', tag: 'Word Form',
+                q: 'The company\'s ___ to customer satisfaction has remained consistent over the past decade.',
+                a: 'commitment', opts: ['commitment', 'commit', 'committed', 'committing'],
+                rule: 'Noun after Possessive (company\'s)',
+                explain: 'After "company\'s" we need a <strong>noun</strong> as the sentence subject. <strong>"Commitment"</strong> is a noun. "Commit" = verb. "Committed" = adjective. "Committing" = gerund.'
+            },
+            {
+                type: 'wordform', tag: 'Word Form',
+                q: 'The merger was considered ___ by most financial analysts due to its long-term potential.',
+                a: 'beneficial', opts: ['beneficial', 'benefit', 'beneficially', 'benefiting'],
+                rule: 'Adjective after Linking Verb "considered"',
+                explain: 'After "was considered" (linking verb), we need a <strong>predicate adjective</strong>. <strong>"Beneficial"</strong> = adjective. "Benefit" = noun/verb. "Beneficially" = adverb (wrong here).'
+            },
+            {
+                type: 'wordform', tag: 'Word Form',
+                q: 'The director spoke ___ about the challenges facing the organization going forward.',
+                a: 'candidly', opts: ['candidly', 'candid', 'candidness', 'candidate'],
+                rule: 'Adverb modifies Verb "spoke"',
+                explain: '"Spoke" is a verb; we need an <strong>adverb</strong> to modify it. <strong>"Candidly"</strong> = adverb of manner (how he spoke). "Candid" = adjective. Adverbs answer "how?"'
+            },
+            {
+                type: 'wordform', tag: 'Word Form',
+                q: 'Employees are encouraged to report any ___ behavior in the workplace immediately.',
+                a: 'inappropriate', opts: ['inappropriate', 'inappropriately', 'inappropriateness', 'appropriately'],
+                rule: 'Adjective before Noun "behavior"',
+                explain: 'Before a noun ("behavior") we need an <strong>adjective</strong>. <strong>"Inappropriate"</strong> = adjective. "Inappropriately" = adverb (modifies verbs, not nouns).'
+            },
+
+            // CONJUNCTIONS
+            {
+                type: 'conj', tag: 'Conjunctions',
+                q: '___ the project was completed on time, the client expressed dissatisfaction with the quality.',
+                a: 'Although', opts: ['Although', 'Because', 'Therefore', 'Moreover'],
+                rule: 'Although = Concession (unexpected contrast)',
+                explain: '"<strong>Although</strong>" introduces a contrast — unexpected situation (on time BUT client was dissatisfied). "Because" = reason. "Therefore" = result (adverb). "Moreover" = addition.'
+            },
+            {
+                type: 'conj', tag: 'Conjunctions',
+                q: 'The budget has been approved; ___, the project cannot proceed without the board\'s final signature.',
+                a: 'however', opts: ['however', 'therefore', 'furthermore', 'likewise'],
+                rule: 'However = Contrast after semicolon',
+                explain: 'After a semicolon, <strong>"however"</strong> shows contrast/limitation. "Therefore" = result. "Furthermore" = addition. "Likewise" = similarity.'
+            },
+            {
+                type: 'conj', tag: 'Conjunctions',
+                q: '___ the new regulations came into effect, several companies were forced to restructure.',
+                a: 'Once', opts: ['Once', 'Unless', 'During', 'Despite'],
+                rule: 'Once = as soon as (Time Connector)',
+                explain: '"<strong>Once</strong>" = as soon as / after (time connector showing immediate sequence). "Unless" = if not. "During" = preposition (cannot start a clause). "Despite" = preposition.'
+            },
+
+            // RELATIVE CLAUSES
+            {
+                type: 'relative', tag: 'Relative Clauses',
+                q: 'The applicant ___ résumé was most impressive was offered the position immediately.',
+                a: 'whose', opts: ['whose', 'who', 'which', 'whom'],
+                rule: 'Whose = Possessive Relative Pronoun',
+                explain: '"<strong>Whose</strong>" is the possessive relative pronoun. "Whose résumé" = the applicant\'s résumé. "Who" = subject. "Whom" = object. "Which" = for things, not people.'
+            },
+            {
+                type: 'relative', tag: 'Relative Clauses',
+                q: 'The conference room on the top floor, ___ is equipped with the latest technology, is reserved for executives.',
+                a: 'which', opts: ['which', 'that', 'who', 'what'],
+                rule: 'Which = Non-Restrictive Clause (with commas)',
+                explain: '"<strong>Which</strong>" is used in non-restrictive clauses — added information between commas. "That" is for restrictive clauses (no commas). Never use "what" as a relative pronoun.'
+            },
+
+            // GERUND vs INFINITIVE
+            {
+                type: 'gerund', tag: 'Gerund / Infinitive',
+                q: 'The manager suggested ___ the client meeting to next Thursday due to scheduling conflicts.',
+                a: 'postponing', opts: ['postponing', 'to postpone', 'postpone', 'being postponed'],
+                rule: 'Suggest + Gerund (-ing)',
+                explain: '"<strong>Suggest</strong>" is always followed by a <strong>gerund (-ing)</strong> or "that + clause." Never by infinitive. Gerund-only verbs: avoid, enjoy, recommend, finish, consider.'
+            },
+            {
+                type: 'gerund', tag: 'Gerund / Infinitive',
+                q: 'The company decided ___ its workforce in response to declining revenues.',
+                a: 'to reduce', opts: ['to reduce', 'reducing', 'reduce', 'being reduced'],
+                rule: 'Decide + Infinitive (to + verb)',
+                explain: '"<strong>Decide</strong>" is always followed by <strong>infinitive (to + base verb)</strong>. Infinitive-only verbs: decide, agree, refuse, promise, hope, want, plan, expect, manage.'
+            },
+            {
+                type: 'gerund', tag: 'Gerund / Infinitive',
+                q: 'Mr. Park stopped ___ emails during the presentation to give his full attention to the audience.',
+                a: 'checking', opts: ['checking', 'to check', 'check', 'to be checking'],
+                rule: 'Stop + Gerund ≠ Stop + Infinitive (different meanings!)',
+                explain: '"Stop + <strong>gerund</strong>" = quit doing that activity. "Stop + <strong>infinitive</strong>" = stop in order to do something else. "He stopped <u>checking</u> emails" = he quit checking. "He stopped <u>to check</u>" = he stopped walking in order to check.'
+            },
+
+            // CONDITIONALS
+            {
+                type: 'cond', tag: 'Conditionals',
+                q: 'If the shipment ___ delayed again, we will need to inform our clients immediately.',
+                a: 'is', opts: ['is', 'was', 'were', 'had been'],
+                rule: 'First Conditional: If + Present Simple, will + base verb',
+                explain: '<strong>First Conditional</strong> = real/possible future. Structure: <strong>"If + Present Simple, will + base."</strong> "If the shipment <u>is</u> delayed" — NOT "will be" or "would be" in the if-clause.'
+            },
+            {
+                type: 'cond', tag: 'Conditionals',
+                q: 'If the management ___ taken earlier action, the company would not have faced bankruptcy.',
+                a: 'had taken', opts: ['had taken', 'took', 'would take', 'has taken'],
+                rule: 'Third Conditional: If + Past Perfect, would have + past participle',
+                explain: '<strong>Third Conditional</strong> = unreal past (did NOT happen). Structure: <strong>"If + Past Perfect, would have + past participle."</strong>'
+            },
+
+            // REPORTED SPEECH
+            {
+                type: 'reported', tag: 'Reported Speech',
+                q: 'The spokesperson said that the company ___ the investigation by the end of the week.',
+                a: 'would complete', opts: ['would complete', 'will complete', 'completes', 'is completing'],
+                rule: 'Backshift: will → would in Reported Speech',
+                explain: 'Main verb is past ("said") → future tense shifts back: <strong>will → would</strong>. Full backshift: will→would, can→could, may→might, must→had to, is→was.'
+            },
+            {
+                type: 'reported', tag: 'Reported Speech',
+                q: 'The manager asked the team whether they ___ ready to begin the presentation.',
+                a: 'were', opts: ['were', 'are', 'will be', 'had been'],
+                rule: 'Reported Questions — Backshift + Statement Word Order',
+                explain: 'In reported questions: same backshift rule. "Are you ready?" → "whether they <u>were</u> ready." Note: reported questions use <strong>statement word order</strong> (no inversion, no question mark).'
+            },
+
+            // COMPARISON
+            {
+                type: 'compare', tag: 'Comparison',
+                q: 'The new system processes data far ___ than the previous version.',
+                a: 'more efficiently', opts: ['more efficiently', 'more efficient', 'most efficiently', 'efficiently more'],
+                rule: 'Comparative Adverb for Long Adverbs: more + adverb',
+                explain: 'Comparing two things → <strong>comparative</strong>. "Efficiently" is a long adverb (3+ syllables) → use <strong>"more + adverb"</strong>. "More efficient" is a comparative adjective (needs a noun).'
+            },
+            {
+                type: 'compare', tag: 'Comparison',
+                q: 'This quarter\'s performance was ___ that of last year, exceeding all projected targets.',
+                a: 'better than', opts: ['better than', 'more good than', 'more better than', 'goodly than'],
+                rule: 'Irregular Comparative: good → better → best',
+                explain: '"Good" has an <strong>irregular comparative: better</strong>. Never "more good" or "more better." Other irregulars: bad→worse, far→farther, much→more, little→less.'
+            }
+        ];
+
+        function generateQuestions() {
+            return shuffle(QB).slice(0, 20);
+        }
+
+        // ── TYPE COLORS ──────────────────────────────────────────
+        var TMETA = {
+            tobe: { label: 'To Be', icon: '🔵' },
+            tense: { label: 'Verb Tense', icon: '⏳' },
+            passive: { label: 'Passive Voice', icon: '🔄' },
+            modal: { label: 'Modal Verbs', icon: '💬' },
+            agree: { label: 'Subject-Verb Agreement', icon: '✅' },
+            prep: { label: 'Prepositions', icon: '📍' },
+            article: { label: 'Articles', icon: '📌' },
+            wordform: { label: 'Word Form', icon: '🔤' },
+            conj: { label: 'Conjunctions', icon: '🔗' },
+            relative: { label: 'Relative Clauses', icon: '🔍' },
+            gerund: { label: 'Gerund / Infinitive', icon: '✏️' },
+            cond: { label: 'Conditionals', icon: '❓' },
+            reported: { label: 'Reported Speech', icon: '💭' },
+            compare: { label: 'Comparison', icon: '📊' }
+        };
+        function gm(t) { return TMETA[t] || { label: t, icon: '⭐' }; }
+
+        // ── QUIZ START ───────────────────────────────────────────
+        function renderQuizStart() {
+            quizQs = generateQuestions();
+            quizIdx = 0; quizScore = 0; quizStreak = 0; quizHistory = []; quizDone = false; quizAnswered = false;
+
+            var dist = {};
+            quizQs.forEach(function (q) {
+                var m = gm(q.type);
+                if (!dist[q.type]) dist[q.type] = { label: m.label, icon: m.icon, count: 0 };
+                dist[q.type].count++;
+            });
+
+            var html = '<div class="qstart">';
+            html += '<h3>TOEIC Grammar Quiz</h3>';
+            html += '<p>20 TOEIC-style English grammar questions covering tenses, passive voice, modal verbs, articles, word forms, conditionals, and more. Every answer includes a full grammar rule explanation.</p>';
+            html += '<div class="qinfo-row">';
+            html += '<div class="qibox"><div class="n">20</div><div class="l">Questions</div></div>';
+            html += '<div class="qibox"><div class="n">14</div><div class="l">Grammar Topics</div></div>';
+            html += '<div class="qibox"><div class="n">TOEIC</div><div class="l">Part 5 & 6 Style</div></div>';
+            html += '</div>';
+            html += '<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:14px 16px;margin-bottom:20px;text-align:left">';
+            html += '<div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#9090b8;margin-bottom:10px">Grammar Topics in This Quiz</div>';
+            html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+            Object.keys(dist).forEach(function (t) {
+                var m = gm(t);
+                html += '<div style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.07);font-size:12px;color:#c0c0d8">' + m.icon + ' ' + m.label + '</div>';
+            });
+            html += '</div></div>';
+            html += '<div style="background:rgba(99,102,241,0.1);border-radius:11px;padding:12px 14px;margin-bottom:20px;font-size:14px;color:#c0c0d8;line-height:1.6;text-align:left;border-left:3px solid #6366f1">';
+            html += '<strong style="color:#818cf8">Instructions:</strong> Choose the grammatically correct option. After all 20 questions, you will see your score and a detailed explanation for every answer.';
+            html += '</div>';
+            html += '<button class="btn-start" onclick="startQuiz()">▶ Start Grammar Quiz</button>';
+            html += '</div>';
+            document.getElementById('tab-quiz').innerHTML = html;
+        }
+
+        function startQuiz() { quizIdx = 0; renderQ(); }
+
+        // ── RENDER QUESTION ─────────────────────────────────────
+        // KEY FIX: use data-idx instead of inline onclick with string params
+        // to avoid quote-escaping bugs
+        function renderQ() {
+            if (quizIdx >= quizQs.length) { renderResult(); return; }
+            var q = quizQs[quizIdx];
+            quizAnswered = false;
+            var pct = Math.round((quizIdx / quizQs.length) * 100);
+            var m = gm(q.type);
+            var labels = ['A', 'B', 'C', 'D'];
+
+            var html = '';
+            html += '<div class="qhd">';
+            html += '<div class="qbadge">' + m.icon + ' ' + m.label + '</div>';
+            html += '<div class="qmeta">Q<b>' + (quizIdx + 1) + '</b>/' + quizQs.length + '&nbsp;&nbsp;Score: <b>' + quizScore + '</b>&nbsp;&nbsp;🔥<b>' + quizStreak + '</b></div>';
+            html += '</div>';
+            html += '<div class="qpbar"><div class="qpfill" style="width:' + pct + '%"></div></div>';
+            html += '<div class="qrule">📐 Rule: ' + q.rule + '</div>';
+            html += '<div class="qq">' + q.q + '</div>';
+            html += '<div class="qopts" id="qopts">';
+            q.opts.forEach(function (opt, i) {
+                html +=
+                    '<button class="qopt" data-idx="' + i + '" type="button">' +
+                    '<span class="opt-lbl">' + labels[i] + '</span>' +
+                    '<span>' + opt + '</span>' +
+                    '</button>';
+            });
+            html += '</div>';
+            html += '<div class="qfb" id="qfb"></div>';
+            html += '<div class="qfooter">';
+            html += '<div class="qstreak">Best streak: <b>' + bestStreak + '</b> 🏆</div>';
+            html += '<button class="btn-nxt" id="qnxt" onclick="nextQ()" type="button">Next →</button>';
+            html += '</div>';
+
+            document.getElementById('tab-quiz').innerHTML = html;
+
+            // Attach click handlers AFTER inserting into DOM (avoids all quote issues)
+            document.querySelectorAll('#qopts .qopt').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var idx = parseInt(this.getAttribute('data-idx'));
+                    checkQ(idx);
+                });
+            });
+        }
+
+        function checkQ(optIdx) {
+            if (quizAnswered) return;
+            quizAnswered = true;
+            var q = quizQs[quizIdx];
+            var chosen = q.opts[optIdx];
+            var correct = (chosen === q.a);
+
+            // Highlight buttons
+            document.querySelectorAll('#qopts .qopt').forEach(function (b) {
+                b.disabled = true;
+                var i = parseInt(b.getAttribute('data-idx'));
+                if (q.opts[i] === q.a) b.classList.add('ok');
+            });
+            if (!correct) {
+                document.querySelectorAll('#qopts .qopt')[optIdx].classList.add('no');
+            }
+
+            var fb = document.getElementById('qfb');
+            if (correct) {
+                quizScore++; quizStreak++;
+                if (quizStreak > bestStreak) bestStreak = quizStreak;
+                fb.textContent = '✓ Correct!';
+                fb.className = 'qfb ok';
+                document.getElementById('ns').textContent = ++score;
+            } else {
+                quizStreak = 0;
+                fb.textContent = '✗ Incorrect — the correct answer is highlighted in green.';
+                fb.className = 'qfb no';
+            }
+            quizHistory.push({ q: q, chosen: chosen, correct: correct });
+            document.getElementById('qnxt').className = 'btn-nxt show';
+        }
+
+        function nextQ() { quizIdx++; renderQ(); }
+
+        // ── QUIZ RESULT ──────────────────────────────────────────
+        function renderResult() {
+            quizDone = true;
+            var pct = Math.round((quizScore / quizQs.length) * 100);
+            var grade, gcls, msg;
+            if (pct >= 90) { grade = 'S — Outstanding!'; gcls = 'gS'; msg = 'Exceptional grammar mastery! You\'re TOEIC-ready.'; }
+            else if (pct >= 75) { grade = 'A — Excellent!'; gcls = 'gA'; msg = 'Great work! Review the few errors below to perfect your score.'; }
+            else if (pct >= 55) { grade = 'B — Good Job!'; gcls = 'gB'; msg = 'Solid effort. Study the grammar rules in the explanations carefully.'; }
+            else { grade = 'C — Keep Studying'; gcls = 'gC'; msg = 'Don\'t give up — read every explanation below. Each one teaches an important rule.'; }
+
+            // topic breakdown
+            var tstat = {};
+            quizHistory.forEach(function (h) {
+                var t = h.q.type, m = gm(t);
+                if (!tstat[t]) tstat[t] = { label: m.label, icon: m.icon, ok: 0, total: 0 };
+                tstat[t].total++;
+                if (h.correct) tstat[t].ok++;
+            });
+
+            var html = '';
+
+            // Hero
+            html += '<div class="qres-hero">';
+            html += '<div class="qres-pct">' + pct + '%</div>';
+            html += '<div class="qres-label">' + quizScore + ' correct out of ' + quizQs.length + '</div>';
+            html += '<div class="qres-grade ' + gcls + '">' + grade + '</div>';
+            html += '<p style="font-size:14px;color:#9090b8;margin-top:10px">' + msg + '</p>';
+            html += '</div>';
+
+            // Summary
+            html += '<div class="qres-summary">';
+            html += '<div class="rsc g"><div class="sn">' + quizScore + '</div><div class="sl">✓ Correct</div></div>';
+            html += '<div class="rsc r"><div class="sn">' + (quizQs.length - quizScore) + '</div><div class="sl">✗ Wrong</div></div>';
+            html += '<div class="rsc y"><div class="sn">' + bestStreak + '</div><div class="sl">Best Streak</div></div>';
+            html += '</div>';
+
+            // Topic breakdown bars
+            html += '<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:16px;margin-bottom:24px">';
+            html += '<div style="font-size:17px;font-weight:600;letter-spacing:-0.374px;color:#f0f0ff;margin-bottom:14px">📊 Score by Grammar Topic</div>';
+            Object.keys(tstat).forEach(function (t) {
+                var s = tstat[t];
+                var pp = Math.round((s.ok / s.total) * 100);
+                var barCol = pp >= 75 ? '#34c759' : pp >= 50 ? '#0066cc' : '#ff3b30';
+                html += '<div class="topic-row">';
+                html += '<div class="topic-label">' + s.icon + ' ' + s.label + '</div>';
+                html += '<div class="topic-bar-wrap"><div class="topic-bar" style="width:' + pp + '%;background:' + barCol + '"></div></div>';
+                html += '<div class="topic-score">' + s.ok + '/' + s.total + '</div>';
+                html += '</div>';
+            });
+            html += '</div>';
+
+            // Review
+            html += '<div class="sec-h">📋 Full Answer Review & Grammar Explanations</div>';
+            html += '<div class="review-list">';
+            quizHistory.forEach(function (h, i) {
+                var ok = h.correct, m = gm(h.q.type);
+                html += '<div class="ri">';
+                html += '<div class="ri-head">';
+                html += '<div class="ri-num ' + (ok ? 'ok' : 'no') + '">' + (i + 1) + '</div>';
+                html += '<div style="flex:1">';
+                html += '<div style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#c0c0d8;margin-bottom:5px">' + m.icon + ' ' + m.label + '</div>';
+                var qtext = h.q.q;
+                html += '<div class="ri-q">' + qtext + '</div>';
+                html += '</div>';
+                html += '<div class="ri-tag ' + (ok ? 'ok' : 'no') + '">' + (ok ? '✓ Correct' : '✗ Wrong') + '</div>';
+                html += '</div>';
+                html += '<div class="ri-body">';
+                if (!ok) {
+                    html += '<div class="ri-your no">❌ Your answer: <em>' + h.chosen + '</em></div>';
+                    html += '<div class="ri-ans">✅ Correct: <strong>' + h.q.a + '</strong></div>';
+                } else {
+                    html += '<div class="ri-your ok">✅ Your answer: <strong>' + h.chosen + '</strong></div>';
+                }
+                html += '<div class="ri-exp">';
+                html += '<strong>📐 Grammar Rule: ' + h.q.rule + '</strong>';
+                html += '<p>' + h.q.explain + '</p>';
+                html += '</div>';
+                html += '</div></div>';
+            });
+            html += '</div>';
+
+            // Bottom buttons
+            html += '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:20px 0 4px">';
+            html += '<button class="btn-retry blue" onclick="renderQuizStart();switchTab(\'quiz\',document.querySelector(\'.mtab[data-tab=quiz]\'))">↺ New Quiz</button>';
+            html += '<button class="btn-retry" onclick="switchTab(\'id\',document.querySelector(\'.mtab[data-tab=id]\'))">📖 Review Identity Cards</button>';
+            html += '</div>';
+
+            document.getElementById('tab-quiz').innerHTML = html;
+        }
+
+        // ═══════════════════════════════════════
+        //  TOAST
+        // ═══════════════════════════════════════
+        var _tto;
+        function toast(msg) {
+            var t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('sh');
+            clearTimeout(_tto);
+            _tto = setTimeout(function () { t.classList.remove('sh'); }, 2800);
+        }
+
+        // ═══════════════════════════════════════
+        //  KEYBOARD
+        // ═══════════════════════════════════════
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeMod();
+        });
+
+        // ═══════════════════════════════════════
+        //  INIT
+        // ═══════════════════════════════════════
+        renderGrid();
+
+    </script>
+</body>
+
+</html>
