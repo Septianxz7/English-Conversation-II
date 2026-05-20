@@ -1423,6 +1423,68 @@
       margin-top: 10px
     }
 
+footer {
+    background: linear-gradient(135deg, #350445, #3d094a);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 0, 0, 0.844);
+    padding: 8px 40px;
+    margin-top: 60px;
+    box-shadow: 0 -5px 25px rgba(157, 94, 208, 0.67);
+    position: relative;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #8c1bce;
+    letter-spacing: 1px;
+}
+
+.footer-project {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #9ca3af;
+    text-align: right;
+    margin-top: 15px;
+}
+
+.footer-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-copy {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(198, 166, 238);
+}
+
+.footer-author {
+    margin-top: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: #cebbee;
+}
+
+.footer-author strong {
+    color: rgb(216, 188, 235);
+    font-weight: 600;
+}
+
     @media(max-width:600px) {
       .qopts {
         grid-template-columns: 1fr
@@ -1522,9 +1584,24 @@
     </div>
     <div id="cgrid"></div>
     <footer>
-      <div class="fb">EinVerse</div>
-      <div class="fn">English Project · Politeknik Negeri Medan</div>
-    </footer>
+    <div class="footer-top">
+        <div class="footer-brand">EinVerse</div>
+
+        <div class="footer-project">
+            English Project • Politeknik Negeri Medan
+        </div>
+    </div>
+
+    <div class="footer-center">
+        <div class="footer-copy">
+            © 2026 EinVerse. All rights reserved.
+        </div>
+
+        <div class="footer-author">
+            Dibuat oleh: <strong>Septian Liasta Pelawi</strong>
+        </div>
+    </div>
+</footer>
   </div>
 
   <!-- OVERLAY BG -->
